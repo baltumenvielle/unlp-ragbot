@@ -1,0 +1,671 @@
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+Redes y Comunicaciones
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+1 / 41
+
+Principios e Introducci´on a HTTP
+Introducci´on
+Historia
+WWW (red de sistemas de hypertexto inter-linkeados accesibles v´ıa
+Internet).
+Desarrollada en 1990 por Tim Berners-Lee en el CERN.
+Desarrolla el protocolo HTTP y el lenguaje HTML.
+1993: el primer cliente/browser GUI: Mosaic.
+1994: Netscape Navigator 1.0.
+Desarrollo de servidores, por ejemplo 1995: Apache Server.
+Buscadores, Indexadores son parte importante del servicio.
+Modelo anterior de interacci´on: servidor produce, cliente consume.
+Nuevos Modelos: Web 2.0, Tim O’Reilly en 2004, modelo de
+interacci´on entre usuarios, consumen y producen mediante servicios
+especiales: blogs, redes sociales, wikis, multimedia, etc.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+2 / 41
+
+Principios e Introducci´on a HTTP
+Introducci´on
+Elementos WEB
+Recurso u Objeto HTTP: ej. web page.
+Referenciado por una URI (Uniform Resourse Id): URL (Uniform
+Resource Location) o URN (Name).
+Formato de URL:
+protocol://[user:pass@]host:[port]/[path].
+Ejemplo: http://www.NN.unlp.edu.ar:8080/dir/index.html.
+URN: no indica ubicaci´on, solo identiﬁcan, categor´ıas, poco impl. ej.
+urn:isbn:0132856204, urn:ietf:rfc:2616.
+Objetos pueden ser p´agina web (web page), im´agenes JPEG, PNG,
+GIF, Java Applet, archivos de multimedia: MP3, AVI, etc.
+P´aginas web: archivo HTML que incluye v´ınculos o directamente
+otros objetos.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+3 / 41
+
+Principios e Introducci´on a HTTP
+Funcionamiento de HTTP
+Funcionamiento de HTTP
+Modelo cliente/servidor, Request/Response (sin estados - stateless).
+Protocolo que corre sobre TCP (requiere protocolo de transporte
+conﬁable), usa el puerto 80 por default.
+El cliente escoge cualquier puerto no privilegiado.
+Trabaja sobre texto ASCII, permite enviar informaci´on binaria con
+encabezados MIME.
+Clientes (llamados browsers o navegadores): Firefox, IE, Opera,
+Safari, Chrome.
+Servidores: Apache Server, MS IIS, NGINX , Google GWS, Tomcat.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+4 / 41
+
+Principios e Introducci´on a HTTP
+Funcionamiento de HTTP
+Esquema de HTTP
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+5 / 41
+
+Versiones de HTTP
+Protocolo HTTP 0.9
+Versi´on HTTP 0.9
+Primera versi´on de HTTP fue la 0.9 nunca se estandariz´o.
+Pasos para obtener un documento:
+1
+Establecer la conexi´on TCP
+2
+HTTP Request v´ıa comando GET.
+3
+HTTP Response enviando la p´agina requerida.
+4
+Cerrar la conexi´on TCP por parte del servidor.
+5
+Si no existe el documento o hay un error directamente se cierra la
+conexi´on.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+6 / 41
+
+Versiones de HTTP
+Protocolo HTTP 0.9
+Diagrama de Pasos HTTP
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+7 / 41
+
+Versiones de HTTP
+Protocolo HTTP 0.9
+Versi´on HTTP 0.9 (cont’d)
+Solo una forma de Requerimiento.
+Solo una forma de Respuesta.
+Request/Response sin estado.
+Request ::== GET <document-path> <CR><LF>
+Response ::== ASCII chars HTML Document.
+GET /hello.html <CR><LF>
+GET / <CR><LF>
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+8 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Versi´on HTTP 1.0
+Versi´on de HTTP 1.0 est´andar [RFC-1945].
+Deﬁne formato, proceso basado en HTTP 0.9:
+Se debe especiﬁcar la versi´on en el requerimiento del cliente.
+Para los Request, deﬁne diferentes m´etodos HTTP.
+Deﬁne c´odigos de respuesta.
+Admite repertorio de caracteres, adem´as del ASCII, como: ISO-8859-1,
+UTF-8, etc.
+Admite MIME (No solo sirve para descargar HTML e im´agenes).
+Por default NO utiliza conexiones persistentes.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+9 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Request HTTP 1.0
+<Method> <URI> <Version>
+[<Headers Opcionales>]
+<Blank>
+[<Entity Body Opcional>]
+<Blank>
+<Method HTTP 1.0> ::== GET, POST, HEAD, PUT,
+DELETE, LINK, UNLINK
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+10 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Response HTTP 1.0
+<HTTP Version> <Status Code> <Reason Phrase>
+[<Headers Opcionales>]
+<Blank>
+[<Entity Body Opcional>]
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+11 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Ejemplos de respuestas HTTP/1.0
+HTTP/<version> 200 OK
+HTTP/<version> 301 Moved Permanently
+HTTP/<version> 400 Bad Request
+HTTP/<version> 403 Access Forbidden
+HTTP/<version> 404 Not Found
+HTTP/<version> 405 Method Not Allowed
+HTTP/<version> 500 Internal Server Error (CGI Error)
+HTTP/<version> 501 Method Not Implemented
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+12 / 41
+
+Versiones de HTTP
+HTTP 1.0
+M´etodos HTTP/1.0
+GET: obtener el documento requerido. Puede enviar informaci´on,
+pero no demasiada. Es enviada en la URL. Formato
+?var1=val1&var2=val2.... Limitaci´on de tama˜no de URL
+por parte de las implementaciones. NO espera recibir datos
+en body.
+HEAD: id´entico a GET, pero s´olo requiere la meta informaci´on del
+documento, por ejemplo, su tama˜no. Usado por clientes con
+cach´e.
+POST: hace un requerimiento de un documento, pero tambi´en env´ıa
+informaci´on en el Body. Generalmente, usado en el ﬁll-in de
+un formulario HTML(FORM). Puede enviar mucha m´as
+informaci´on que un GET.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+13 / 41
+
+Versiones de HTTP
+HTTP 1.0
+M´etodos HTTP/1.0 (Cont’d)
+PUT: usado para reemplazar un documento en el servidor. En
+general, deshabilitada. Utilizado, por ejemplo, por protocolos
+montados sobre HTTP, como WebDAV [WDV].
+DELETE: usado para borrar un documento en el servidor. En general,
+deshabilitada. Tambi´en, puede ser utilizada por WebDAV.
+LINK, UNLINK: establecen/des-establecen relaciones entre documentos.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+14 / 41
+
+Versiones de HTTP
+HTTP 1.0
+GET/Response HTTP 1.0
+GET /index2.html HTTP/1.0
+User-Agent: telnet/andres (GNU/Linux)
+Host: estehost.com
+Accept: */*
+HTTP/1.1 200 OK
+Date: Mon, 21 Apr 2008 00:28:51 GMT
+Server: Apache/2.2.4 (Ubuntu)
+Last-Modified: Mon, 21 Apr 2008 00:18:14 GMT
+ETag: "a3b36-1f-91d5d80"
+Accept-Ranges: bytes
+Content-Length: 31
+Connection: close
+Content-Type: text/plain
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+15 / 41
+
+Versiones de HTTP
+HTTP 1.0
+GET/Response HTTP 1.0 (Cont’d)
+<HTML>
+<H1> HOLA </H1>
+...
+</HTML>
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+16 / 41
+
+Versiones de HTTP
+HTTP 1.0
+HEAD/Response HTTP 1.0
+HEAD /index.html HTTP/1.0
+User-Agent: telnet/andres (GNU/Linux)
+Host: estehost.com
+Accept: */*
+HTTP/1.1 200 OK
+Date: Mon, 21 Apr 2008 00:40:25 GMT
+Server: Apache/2.2.4 (Ubuntu)
+Last-Modified: Mon, 21 Apr 2008 00:18:14 GMT
+ETag: "a3b36-1f-91d5d80"
+Accept-Ranges: bytes
+Content-Length: 31
+Connection: close
+Content-Type: text/plain
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+17 / 41
+
+Versiones de HTTP
+HTTP 1.0
+POST/Response HTTP 1.0
+POST /index.html HTTP/1.0
+User-Agent: telnet/andres (GNU/Linux)
+Host: estehost.com
+Accept: */*
+Content-Type: text/plain
+Content-Length: 10
+1234567890
+HTTP/1.1 200 OK
+Date: Mon, 21 Apr 2008 00:37:22 GMT
+Server: Apache/2.2.4 (Ubuntu)
+Last-Modified: Mon, 21 Apr 2008 00:18:14 GMT
+ETag: "a3b36-1f-91d5d80"
+Accept-Ranges: bytes
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+18 / 41
+
+Versiones de HTTP
+HTTP 1.0
+POST/Response HTTP 1.0 (Cont’d)
+Content-Length: 31
+Connection: close
+Content-Type: text/plain
+<HTML>
+<H1> HOLA </H1>
+...
+</HTML>
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+19 / 41
+
+Versiones de HTTP
+HTTP 1.0
+GET HTTP/1.0 con Host Virtuales
+Mediante el par´ametro Host se pueden multiplexar varios servicios
+sobre un mismo host.
+? ./mozilla http://www.uno.test
+? ./mozilla http://www.dos.test
+? host www.uno.test
+www.uno.test has address 192.168.0.2
+? host www.dos.test
+www.dos.test has address 192.168.0.2
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+20 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Virtual Hosts
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+21 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Autenticaci´on HTTP
+HTTP/1.0 contempla autenticaci´on con WWW-Authenticate
+Headers.
+Encabezados, el cliente y el servidor intercambiar informaci´on auth.
+El servidor, ante un requerimiento de un documento que requiere
+autenticaci´on, enviar´a un mensaje 401 indicando la necesidad de
+autenticaci´on y un Dominio/Realm.
+El navegador solicitar´a al usuario los datos de user/password (si es
+que no los tiene cachedos) y los enviar´a en texto claro al servidor.
+El servidor dar´a o no acceso en base a esos valores.
+Para los siguientes requerimientos, el navegador usar´a los valores que
+tiene almacenados para el Realm solicitado.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+22 / 41
+
+Versiones de HTTP
+HTTP 1.0
+Autenticaci´on HTTP (Cont’d)
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+23 / 41
+
+Versiones de HTTP
+HTTP 1.0
+HTTP/1.0 con conexiones persistentes
+En HTTP/1.0 no se contemplaron las conexiones persistentes por
+default.
+A partir de HTTP/1.1 [RFC-2068], si.
+En HTTP/1.0 se pueden solicitar de forma expl´ıcita.
+GET /index.html HTTP/1.0
+Connection: Keep-Alive
+User-Agent: telnet/andres (GNU/Linux)
+Host: estehost.com
+Accept: */*
+HTTP/1.1 200 OK
+Date: Tue, 22 Apr 2008 01:31:56 GMT
+Server: Apache/2.2.4 (Ubuntu)
+Last-Modified: Mon, 21 Apr 2008 00:18:14 GMT
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+24 / 41
+
+Versiones de HTTP
+HTTP 1.0
+HTTP/1.0 con conexiones persistentes (Cont’d)
+ETag: "a3b36-1f-91d5d80"
+Accept-Ranges: bytes
+Content-Length: 31
+Keep-Alive: timeout=15, max=10
+Connection: Keep-Alive
+Content-Type: text/html
+<HTML>
+<H1> HOLA </H1>
+</HTML>
+GET /index.html HTTP/1.0
+Connection: Keep-Alive
+...
+Connection closed by foreign host.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+25 / 41
+
+Versiones de HTTP
+HTTP 1.1
+Versi´on HTTP 1.1
+HTTP/1.1, 1997 con la [RFC-2068] se actualiza con [RFC-2616].
+Nuevos mensajes HTTP 1.1: OPTIONS, TRACE, CONNECT.
+Conexiones persistentes por omisi´on.
+Pipelining, mejora tiempo de respuestas.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+26 / 41
+
+Versiones de HTTP
+HTTP 1.1
+Pipelining HTTP 1.1
+No necesita esperar la respuesta para pedir otro objeto HTTP.
+Solo se utiliza con conexiones persistentes.
+Mejora los tiempos de respuestas.
+Sobre la misma conexi´on de debe mantener el orden de los objetos
+que se devuelven.
+Se pueden utilizar varios threads para cada conexi´on.
+Sin pipelining: 1RTT + FT por cada objeto, n objetos nRTT + nFT.
+Con pipelining ´optimo: n objetos: 1RTT + nFT.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+27 / 41
+
+Versiones de HTTP
+HTTP 1.1
+Pipelining HTTP 1.1 (Cont’d)
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+28 / 41
+
+Versiones de HTTP
+HTTP 1.1
+TRACE y CONNECT HTTP 1.1
+TRACE utilizada para debugging.
+El servidor debe copiar el requerimiento tal cual.
+El cliente puede comparar lo que env´ıa con lo que recibe.
+CONNECT utilizada para generar conexiones a otros servicios montadas
+sobre HTTP.
+Proxy-Agent gen´erico.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+29 / 41
+
+Versiones de HTTP
+HTTP 1.1
+Ejemplo de CONNECT
+CONNECT 127.0.0.1:25
+HTTP/1.0 200 Connection Established
+Proxy-agent: Apache/2.2.4 (Ubuntu)
+220 khartum ESMTP Postfix (Ubuntu)
+HELO otrohost.com
+250 khartum
+QUIT
+221 2.0.0 Bye
+...
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+30 / 41
+
+Versiones de HTTP
+HTTP 1.1
+Redirects HTTP
+Redirect temporal 302, indicando la nueva URL/URI.
+El user-agent no deber´ıa re-direccionarlo salvo que el usuario conﬁrme.
+Moved Permanently 301, se indica que cualquier acceso futuro debe
+realizarse sobre la nueva ubicaci´on (mejora Indexadores).
+Se pueden generar problemas con Cookies.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+31 / 41
+
+Otras Caracter´ısticas de HTTP
+CGIs Scripts y JavaScript
+CGIs Scripts y JavaScript
+Necesidad de dinamismo para generar aplicaciones.
+Server-Side Script:
+Ejecuta del lado del servidor.
+CGI (Common Gateway Interface): aplicaci´on que interact´ua con un
+servidor web.
+CGIs leen de STDIN (POST) o de variables de entorno (GET):
+QUERY STRING datos de usuario.
+Escriben en la STDOUT response.
+Deben anteponer el content-type en el header.
+POST permite enviar m´as datos.
+Lenguajes de scripting m´as ﬂexibles y seguros: PHP, ASP, JSP.
+Implementados como CGIs, dentro o m´odulos propios del web-server.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+32 / 41
+
+Otras Caracter´ısticas de HTTP
+CGIs Scripts y JavaScript
+CGIs Scripts y JavaScript (Cont’d)
+Client-Side Script:
+Ejecuta del lado del cliente, en el browser.
+JavaScript est´andar W3C.
+Usan modelo de objetos DOM (Document Object Model).
+Otros lenguajes JScript, VBScript.
+Permiten extensiones como AJAX (Asynchronous JavaScript And
+XML).
+AJAX hace requerimientos particulares y no necesita recargar toda la
+p´agina.
+Parseo XML para comunicarse.
+Existen numerosos frameworks que encapsulan esta funcionalidad
+brindando una interfaz de programaci´on, API f´acil de utilizar.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+33 / 41
+
+Otras Caracter´ısticas de HTTP
+CGIs Scripts y JavaScript
+CGIs Scripts y JavaScript (Cont’d)
+Server-Side to Server-Side Script:
+Permiten comunicaci´on entre servidores.
+Modelo de “objetos” y servicios distribuidos.
+Conjunto de convenciones para implementar RMI (Remote Method
+Invocation) sobre HTTP (u otro protocolo de texto).
+Previo XML-RPC.
+SOAP (Simple Object Access Protocol).
+Web-Services.
+REST.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+34 / 41
+
+Otras Caracter´ısticas de HTTP
+Cookies
+Cookies
+Mecanismo que permite a las aplicaciones web del servidor “manejar
+estados”.
+El cliente hace un request.
+El servidor retorna un recurso (un objeto HTTP, como una p´agina
+HTML) indicando al cliente que almacene determinados valores por
+un tiempo.
+La Cookie es introducida al cliente mediante el mensaje en el header
+Set-Cookie: mensaje que indica un par (nombre,valor).
+El cliente en cada requerimiento luego de haber almacenado la Cookie
+se la enviar´a al servidor con el header Cookie:.
+El servidor puede utilizarlo o no.
+El servidor puede borrarlo.
+Esta informaci´on puede ser usada por client-side scripts.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+35 / 41
+
+Otras Caracter´ısticas de HTTP
+Cookies
+Ejemplo de Cookie
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+36 / 41
+
+Otras Caracter´ısticas de HTTP
+HTTPS (HTTP Secure)
+HTTPS (HTTP sobre TLS/SSL)
+Utiliza el port 443 por default.
+Etapa de negociaci´on previa.
+Luego se cifra y autentica todo el mensaje HTTP (incluso el header).
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+37 / 41
+
+Web-Cache
+WEB-Cache
+“Proxiar” y Chachear recursos HTTP.
+Objetivos:
+Mejorar tiempo de respuesta (reducir retardo en descarga).
+Ahorro de BW (recursos de la red).
+Balance de carga, atender a todos los clientes.
+Se solicita el objeto, si esta en cache y est´a “fresco” se retorna desde
+all´ı (HIT).
+Si el objeto no est´a o es viejo se solicita al destino y se cachea.
+Se puede realizar control de acceso.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+38 / 41
+
+Web-Cache
+WEB-Cache (Cont’d)
+Cache del lado del cliente (privada).
+Los web browser tienen sus propias cache locales.
+Los servidores agregan headers:
+Last-Modified: date
+ETag: (entity tag) hash
+Requerimientos condicionales desde los clientes:
+If-Modified-Since: date
+If-None-Match: hash
+Respuestas de los servidores:
+304 Not Modiﬁed.
+200 OK.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+39 / 41
+
+Web-Cache
+WEB-Cache (Cont’d)
+Los cache como servers funcionan como Proxy (shared cache).
+Son servidores a los clientes y clientes a los servidores web.
+Los instalan ISP o redes grandes que desean optimizar el uso de los
+recursos.
+Existen:
+Proxy no-transparente.
+Proxy transparentes.
+Proxy en jerarqu´ıa o mesh (ICP y HTCP).
+CDN (Content Delivery Network), funcionan por DNS.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+40 / 41
+
+Web-Cache
+WEB-Cache (Cont’d)
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+41 / 41
+
+Referencias
+[StevI2]
+TCP/IP Illustrated, Volume 1: The Protocols, Addison-Wesley, (2nd. Ed). 2011. Kevin R. Fall, W. Richard Stevens.
+[KR]
+Computer Networking: A Top-Down Approach, Addison-Wesley, (6th Edition). 2012. Kurose/Ross.
+[LX]
+The Linux Home Page: http://www.linux.org/.
+[Siever]
+Linux in a Nutshell, Fourth Edition June, 2003. O’Reilly. Ellen Siever, Stephen Figgins, Aaron Weber.
+[RFC-793]
+http://www.rfc-editor.org/rfc/rfc793.txt. TCP Transmission Control Protocol (Jon Postel 1981 USC-ISI IANA).
+[HTTP0.9]
+The Original HTTP as deﬁned in 1991.
+http://www.w3.org/Protocols/HTTP/AsImplemented.html.
+[RFC-1738]
+http://www.faqs.org/rfcs/rfc1738.html. Uniform Resource Locators (URL). (Berners-Lee, T., Masinter, L., and M.
+McCahill, CERN, Xerox PARC, University of Minnesota, 1994).
+[RFC-1866]
+http://www.faqs.org/rfcs/rfc1866.html. Hypertext Markup Language - 2.0. (Berners-Lee (MIT/W3C) , D.
+Connolly, 1995).
+[HTML30]
+http://www.w3.org/MarkUp/html3/CoverPage. Raggett, D., ”HyperText Markup Language Speciﬁcation Version
+3.0”, September 1995. (Available at
+[HTML401]
+http://www.w3.org/TR/html401 Raggett, D., et al., “HTML 4.01 Speciﬁcation”, W3C Recommendation,
+December 1999.
+[XHTML1]
+http://www.w3.org/TR/xhtml1. ”XHTML 1.0: The Extensible HyperText Markup Language: A Reformulation of
+HTML 4 in XML 1.0”, W3C Recommendation, January 2000.
+[RFC-1945]
+http://www.faqs.org/rfcs/rfc1945.html. Hypertext Transfer Protocol – HTTP/1.0. (T. Berners-Lee (MIT/LCS) ,
+R. Fielding (UC Irvine) , H. Frystyk (MIT/LCS) , 1996).
+[RFC-2068]
+HTTP/1.1. Fielding, R., Gettys, J., Mogul, J., Frystyk, H., and T. Berners-Lee, ”Hypertext Transfer Protocol
+HTTP/1.1”, RFC 2068, 1997.
+[RFC-2616]
+http://www.faqs.org/rfcs/rfc2616.html. HTTP/1.1. (R. Fielding (UC Irvine) , J. Gettys (Compaq/W3C) , J. Mogul
+(Compaq) , H. Frystyk (W3C/MIT) , L. Masinter (Xerox) , P. Leach (Microsoft) , T. Berners-Lee (W3C/MIT), 1999)
+[RFC-2246]
+http://www.ietf.org/rfc/rfc2246.txt. The TLS Protocol Version 1.0. (Dierks, C. Allen (Certicom), 1999).
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+41 / 41
+
+Referencias
+[CGI1.1]
+http://www.w3.org/CGI/. The WWW Common Gateway Interface Version 1.1.
+[PUTs]
+Referencias al m´etodo HTTP/1.0 PUT. http://www.apacheweek.com/features/put.
+http://www.w3.org/Amaya/User/Put.html. http://www.w3.org/Library/Examples/.
+[APACHE]
+http://httpd.apache.org/docs/2.0/server-wide.html
+[MOZ]
+Mozilla Firefox. http://www.mozilla.com.
+[WCPP]
+http://www.oreilly.com/openbook/webclient/ Web Client Programming with Perl. Clinton Wong, 1997.
+[OpenSSL]
+OpenSSL project: http://www.openssl.org/.
+[WDV]
+WebDAV: http://www.webdav.org/. RFC-4918.
+[BR1]
+http://marketshare.hitslink.com.
+http://www.nationmaster.com.
+http://www.w3counter.com/globalstats.php.
+http://en.wikipedia.org/wiki/Usage share of web browsers.
+[SR1]
+http://news.netcraft.com.
+[CAIDAtnotb98]
+The nature of the beast: recent traﬃc measurements from an Internet backbone. K Claﬀy, caida,
+kc@caida.org. Greg Miller and Kevin Thompson, MCI/vBNS, gmiller,kthomp@mci.net. 1998.
+[YT]
+http://www.youtube.com/.
+[COM05]
+Ethereal, Wireshark. Autor original Gerald Combs, 2005.
+http://www.ethereal.com/.
+http://www.wireshark.org/.
+[SOAP]
+W3C Recommendation (27 April 2007). SOAP Version 1.2 Part 0: Primer (Second Edition). W3C.
+http://www.w3.org/TR/2007/REC-soap12-part0-20070427/.
+[COOKIE]
+Cookies Spec. http://curl.haxx.se/rfc/cookie spec.html.
+Redes y Comunicaciones
+Protocolo HTTP(hasta 1.1) y WEB-Cache
+41 / 41
+

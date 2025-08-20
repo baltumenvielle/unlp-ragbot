@@ -1,0 +1,492 @@
+Introducci´on a las Redes de Computadoras
+Redes y Comunicaciones
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Enfoques para comenzar a estudiar Redes
+Preguntar:
+Gen´ericamente: Qu´e es una Red ?
+Aunque seguramente no surja naturalmente la pregunta, sino
+la cuesti´on ser´ıa m´as espec´ıﬁca:
+Qu´e es Internet ?
+Qu´e es la WEB ?
+Qu´e pasa cuando navego por Internet, Accedo a Facebook, o
+miro un video en Youtube ?
+Optaremos por un enfoque de lo general a lo particular
+pregunt´andonos: Qu´e es una red de computadoras /
+ordenadores?
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Qu´e es una red de computadoras/ordenadores ?
+An´alisis del punto de vista sist´emico:
+Red de Computadoras: un grupo de
+computadoras/dispositivos interconectados.
+Objetivo: compartir recursos: dispositivos, informaci´on,
+servicios.
+El conjunto computadoras, software de red, medios y
+dispositivos de interconexi´on forma un sistema de
+comunicaci´on.
+Ejemplos: red de la sala de PCs, red Universitaria, Internet.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Componentes de un Sistema de Comunicaci´on
+Fuente (Software).
+Emisor/Transmisor (Hardware).
+Medio de transmisi´on y dispositivos intermedios (Hardware).
+Procesos intermedios que tratan la informaci´on (Software y
+Hardware).
+Receptor (Hardware).
+Destino (Software).
+Otros: Protocolos (Software), Informaci´on, mensaje
+transmitido (Software).
+Se˜nal de Informaci´on, materializaci´on del mensaje sobre el
+medio (Hardware?).
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Componentes de un Sistema de Comunicaci´on
+Figure: Sistema de Comunicaciones.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Componentes de una Red
+Fuera del punto de vista sist´emico podemos ver un gran
+numero de componentes:
+Computadoras, en el modelo de Internet: Hosts (PCs, laptops,
+servidores).
+Routers/switches, Gateways, AP (Access Points).
+NIC (placas de red), Modems.
+V´ınculos/ enlaces: conformados por:
+Medios: cables, ﬁbras ´opticas, se˜nales electromagn´eticas,
+antenas, interfaces, etc.
+Programas: Browsers, Servidores Web, Clientes de Mail,
+Servidores de Streaming.
+Etc...
+Las componentes de la red deben interactuar y combinarse a
+trav´es de reglas.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Protocolos
+Protocolo: El conjunto de conductas y normas a conocer,
+respetar y cumplir no s´olo en el medio oﬁcial ya
+establecido, sino tambi´en en el medio social, laboral,
+etc.
+Figure: Protocolo
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Protocolos(Cont’d)
+Protocolo: Un protocolo deﬁne el formato, el orden de los
+mensajes intercambiados y las acciones que se llevan
+a cabo en la transmisi´on y/o recepci´on de un
+mensaje u otro evento.
+Protocolo de Red: conjunto de reglas que especiﬁcan el
+intercambio de datos u ´ordenes durante la
+comunicaci´on entre las entidades que forman parte
+de una red. Permiten la comunicaci´on y est´an
+implementados en las componentes.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Protocolos de Redes Propietarios
+A principios de los 80’, las compa˜n´ıas comenzaron a
+implementar redes propias (privadas y cerradas).
+Primeras Redes Propietarias.
+Consecuencia: Cada red ten´ıa sus especiﬁcaciones propias
+(protocolos).
+Resultados: Incompatibilidad. La comunicaci´on entre redes
+era muy dif´ıcil, evoluci´on m´as lenta, carencia de est´andares.
+Complejidad de modelos.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Combinaci´on de Protocolos
+La cantidad de componentes de red a interactuar genera
+complejidad, se requiere una organizaci´on de las mismas.
+Se requieren Modelos de Organizaci´on.
+Modelo en Capas: Layering, divide la complejidad en
+componentes reusables.
+Reduce complejidad en componente m´as peque˜nas.
+Las capas de abajo ocultan la complejidad a las de arriba,
+abstracci´on.
+Las capas de arriba utilizan servicios de las de abajo:
+Interfaces, similar a APIs.
+Los cambios en una capa no deber´ıan afectar a las dem´as
+si la interfaz se mantiene.
+Facilita el desarrollo, evoluci´on de las componentes de red
+asegurando interoperabilidad.
+Facilita aprendizaje, dise˜no y administraci´on de las redes.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo OSI (Open System Interconnection)
+Necesidad de desarrollar componentes est´andares de red.
+Resultado: La ISO (International Standard Org.) crea el
+modelo OSI en 1984.
+Basado en los modelos de red (en capas):
+DECNET (Digital).
+SNA (IBM).
+TCP/IP (DoD USA - Dept. of Defense USA).
+Modelo abierto y est´andar.
+Modelo dividido en 7 (siete) capas.
+Modelo de Referencia.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo OSI (Cont’d)
+Figure: Modelo OSI
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo OSI (Cont’d)
+Modelo en Capas: capa ofrece servicios a la capa superior, usa
+servicios de la capa inferior, mediante interfaz.
+Figure: Comunicaci´on en capas
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo OSI (Cont’d)
+Capas de Host (Host layers): 7,6,5,4, proveen env´ıo de datos de
+forma conﬁable.
+Capas de Medio (Media layers): 3,2,1, controlan el env´ıo f´ısico de
+los mensajes sobre la red.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Funcionalidad por Capa (OSI)
+Aplicaci´on (7): servicios de red a los usuarios y a procesos,
+aplicaciones.
+Presentaci´on/Representaci´on (6): formato de los datos.
+Sesi´on (5): mantener track de sesiones de la aplicaci´on.
+Transporte (4): establecer y mantener canal “seguro” end-to-end
+(applic-to-applic).
+Red (3): direccionar y rutear los mensajes host-to-host.
+Comunicar varias redes.
+Enlace de Datos (2): comunicaci´on entre entes directamente
+conectados. Comunicar una misma red. Acceso al
+Medio.
+F´ısica (1): transportar la informaci´on como se˜nal por el medio
+f´ısico. Caracter´ısticas f´ısicas. Informaci´on binaria,
+digital.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Ejemplos de Implementaciones por Capa (OSI)
+Aplicaci´on (7): Telnet, HTTP, DNS, FTP, DNS, NCP, NDS,
+X.400.
+Presentaci´on/Representaci´on (6): Postscript, JPEG, PNG, TIFF,
+MPEG, ZIP, XDR, ASN, HTML, CharSets(ASCII,
+ISO-8859-1, UTF-8, EBDIC).
+Sesi´on (5): RPC de NFS, SQL, NetBIOS.
+Transporte (4): TCP, UDP, SPX, ISO-TP.
+Red (3): IP, ICMP, OSPF, IPX, CLNP, IS-IS.
+Enlace de Datos (2): Ethernet, 802.3, 802.11, PPP, HDLC.
+F´ısica (1): RJ-45, EIA/TIA-568C, V.24, V.35, G.703(TEL),
+G.652(FO) RS-232, DOCSIS(Coax).
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo TCP/IP
+Modelo que se convirti´o en est´andar.
+Qu´e protocolos se encuentran en Internet ?
+Modelo Abierto.
+Varios protocolos de nivel de enlace: Ethernet, 802.3, PPP,
+HDLC, Frame-Relay, 802.11a/b/g/n/ac, MPLS, DOCSIS,
+GPON, etc (No deﬁnidos por TCP/IP).
+Protocolos propios de Internet y Transporte (N´ucleo): ARP,
+IP, ICMP, TCP, UDP, OSPF, BGP, etc.
+Protocolos de Aplicaciones: DNS, HTTP, FTP, SSH, SMTP,
+IMAP, etc.
+API abierta para generar nuevos protocolos.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo TCP/IP (Cont’d)
+Modelo de 5 (cinco) capas:
+Capa de Aplicaci´on (Process/Application).
+Capa de Transporte o Host-to-Host.
+Capa de Internet o Internetworking.
+Capa de Enlace(Link Layer).
+Capa de F´ısica.
+Por simplicidad algunos autores hablan de 4 capas, agrupando
+a la Capa de Enlace y Capa f´ısica en una sola capa que llaman
+Capa de acceso a la Red.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo TCP/IP (Cont’d)
+Figure: Modelo TCP/IP
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Comparaci´on: OSI vs. TCP/IP
+Figure: Modelo OSI vs TCP/IP
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Comparaci´on: OSI vs. TCP/IP
+Similitudes:
+Ambos se dividen en capas.
+Ambos tienen capas de aplicaci´on, aunque incluyen servicios
+distintos.
+Ambos tienen capas de transporte similares.
+Ambos tienen capa de red similar pero con distinto nombre.
+Se supone que la tecnolog´ıa es de conmutaci´on de paquetes
+(no de conmutaci´on de circuitos).
+Es importante conocer ambos modelos.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Comparaci´on: OSI vs. TCP/IP
+Diferencias:
+TCP/IP combina las funciones de la capa de presentaci´on y de
+sesi´on en la capa de aplicaci´on.
+TCP/IP combina la capas de enlace de datos y la capa f´ısica
+del modelo OSI en una sola capa.
+TCP/IP m´as simple porque tiene menos capas.
+Los protocolos TCP/IP son los est´andares en torno a los cuales
+se desarroll´o Internet, de modo que la credibilidad del modelo
+TCP/IP se debe en gran parte a sus protocolos.
+El modelo OSI es un modelo “m´as” de referencia, te´orico,
+aunque hay implementaciones.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Encapsulamiento
+Cada capa deﬁne su PDU: Protocol Data Unit.
+Figure: Encapsulamiento y PDUs
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Dispositivos y Capas
+Figure: Dispositivos y Capas
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Comunicaci´on entre Capas Peer-Peer
+Cada capa usa el servicio de la de abajo.
+Cada capa se comunica con la capa del otro extremo.
+Figure: Comunicaci´on Peer-Peer
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Comunicaci´on entre Capas Peer-Peer(Cont’d)
+Figure: Comunicaci´on Peer-Peer
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Clasiﬁcaci´on de Redes
+Diferentes clasiﬁcaciones de acuerdo a diferentes aspectos.
+Se pueden mencionar:
+Clasiﬁcaci´on por cobertura, distancia, alcance.
+Clasiﬁcaci´on por acceso abierto o privado.
+Clasiﬁcaci´on por topolog´ıa f´ısica.
+Clasiﬁcaci´on por tipo de conexi´on/medio.
+Etc.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Clasiﬁcaci´on por Cobertura
+LAN: (Local Area Network). Red de cobertura local.
+Ethernet, Wi-Fi.
+MAN: (Metropolitan Area Network). red de cobertura
+metropolitana, dentro de una ciudad. MetroEthernet,
+MPLS, Wi-Max.
+WAN: (Wide Area Network). red de cobertura de ´area
+amplia. Geogr´aﬁcamente distribuida. PPP,
+Frame-Relay, MPLS, HDLC, SONET/SDH.
+SAN: (Storage Area Network). red de almacenamiento.
+iSCSI, Fibre Channel, ESCON.
+PAN: red de cobertura personal. Red con alcance de
+escasos metros para conectar dispositivos cercanos a
+un individuo. Bluetooth, IrDA, USB.
+Otros t´erminos: CAN (Controller Area Network o Campus Area
+Network), NAN (Near-me AN, NFC), ...
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Clasiﬁcaci´on P´ublicas y Privadas
+Internet: red p´ublica global, tecnolog´ıa TCP/IP.
+Intranet: red privada que utiliza la tecnolog´ıa de Internet.
+Extranet: red privada virtualizada sobre enlaces WAN: Internet.
+Intranet con acceso de usuarios remotos. VPN
+(Virtual Private Network) IPSec, PPTP, SSL,
+OpenVPN, L2TP. Una intranet mapeada sobre una
+red p´ublica como Internet.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Clasiﬁcaci´on F´ısica de Redes
+Redes de Conmutaci´on de Circuitos.
+Redes de Conmutaci´on de Tramas/Paquetes.
+Servicios Orientados a Conexi´on. Circuitos Virtuales.
+Servicios NO Orientados a Conexi´on. Datagramas.
+Figure: Clasiﬁcaci´on de Redes
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Qu´e es Internet ?
+Es una red de redes de computadoras, descentralizada,
+p´ublica, que ejecutan el conjunto abierto de protocolos (suite)
+TCP/IP. Integra diferentes protocolos de un nivel m´as bajo:
+INTERNETWORKING
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo de Internet
+Modelo de forma de reloj de arena (hourglass):
+Figure: Modelo hourglass.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Modelo Simpliﬁcado de Internet
+Figure: Modelo Simpliﬁcado de Internet de 4 capas
+Digital Crossroads: American Telecommunications Policy in the Internet Age By Jonathan E. Nuechterlein
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Qu´e es Internet ? (Cont’d)
+Qu´e computadoras: PCs, Mainframes, Celulares, Laptops,
+Handhelds, Supercomputadoras, autos, heladeras, etc
+...
+Computadoras Especiales: routers y switches (sucesores de IMPs
+-Interface Message Processors-).
+Qu´e medios: cobre, ﬁbra ´optica, wireless, sat´elites, etc.
+Qu´e informaci´on: de todo !!!!! (de forma digital).
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Objetivos/Historia de Internet
+Inicios de 1960’: Red militar para la guerra fr´ıa ?? (a´un no exist´ıa
+TCP/IP). Packet Switching Theory: paper de
+Kleinrock, usar paquetes en lugar de circuitos en
+1960. ARPANET: RAND Corp, Leonard Kleinrock
+del MIT trabajan sobre la red, BBN implementa
+IMPs.
+Primera vez On-Line 1969: Conectaba las Universidades: Stanford
+(SRI), Utah, UCLA, UCSB (UC Santa Barbara).
+Nuevo protocolo LAN 1973: Ethernet, Bob Metcalfe en Xerox
+PARC.
+Cambio a TCP/IP 1983: Desde NCP a TCP/IP. Vinton Cerf y
+Robert E. Kahn.
+Luego, NSFNET 1985: Red Cient´ıﬁca e Investigaci´on, Usada por
+las Universidades.
+Continuando 1988: Comienza como negocio, nuevas
+oportunidades.
+Hoy 2020: Tele-trabajo, Clases Virtuales, Redes Sociales,
+multimedia, Web 2.0 y 3.0, etc.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+(Request for Comments) (Cont’d)
+Categor´ıa STANDARD TRACK. RFC maturity levels.
+Proposed Standard: no se requiere implementaciones. Se
+asigna RFCnnnn.
+Internet Standard (STD): existen implementaciones y
+signiﬁcante experiencia operacional. Se retiene
+el RFCnnnn y se agrega STDxxxx.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+(Request for Comments) (Cont’d)
+Otras Categor´ıas: “Oﬀ-track”.
+INFORMAL/EXPERIMENTAL: otro proceso, se publica
+como Internet Draft, pero se coloca en otra Cat.
+BCP (Best Current Practices): otro proceso.
+HISTORIC (STD obsoletas): las RFCs se van actualizando o
+se pueden declarar obsoletas por otras.
+FYI: (For Your Information): como INFORMATIONAL.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+RFC (Request for Comments) (Cont’d)
+Algunos ejemplos: http://www.rfc-editor.org/rfcxx00.html.
+RFC 791: IP, STD 5. 1981.
+RFC 792: ICMP. STD 5. 1981.
+RFC 793: TCP, STD 7. 1981.
+RFC 768: UDP, STD 6. 1980.
+RFC 854: TELNET, STD 8. 1983.
+RFC 1035: DNS, STD 13. 1987.
+RFC 2460 (desde 1998), luego 8200: IPv6, STD 86. 2017.
+RFC 1945: HTTP 1.0, Informational. 1996.
+RFC 2616: HTTP 1.1, aun Std Track. 1999.
+RFC 5735, BCP 153: Special Use IPv4 Addresses. 2010.
+RFC 5721, Experimental: POP3 Support for UTF-8. 2010.
+RFC 1149, Experimental: Standard for the transmission of IP
+datagrams on avian carriers. 1 April 1990. April Fools’ Day.
+RFC 1267, Historic: BGP Border Gateway Protocol 3, 1991,
+obsoleta por RFC 4271: BGP-4.
+RFC 1983, (Informational) FYI 18: Internet Users’ Glossary.
+1996.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Estructura de Internet
+Estructura en Jer´arquica, en Tiers.
+Capa de Acceso (Edge): Acceso Residenciales, Acceso de
+Organizaciones.
+Capa de n´ucleo (Core): dividida en diferentes niveles.
+Proveedores Regionales (Regional ISPs).
+Proveedores Nacionales.
+Proveedores Internacionales.
+Proveedores Internacionales en el Tier 1.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Tecnolog´ıas de Internet (Finales)
+Diferentes tecnolog´ıas de ´ultima milla(acceso) y de redes
+locales.
+Despliege local y de acceso de las personas y las
+organizaciones.
+Ver capa f´ısica y enlace modelo OSI.
+´Ultimos eslabones en la jerarqu´ıa.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Estructura de Internet (Core)
+Tecnolog´ıas de ﬁbra ´optica, Cobre, Sat´elites.
+Se interconectan mediante POPs (Point Of Presence) con
+Proveedores.
+Entre proveedores se interconectan mediante NAPs (Network
+Access Point) o conexiones Directas.
+Actualmente los NAPs se los llama IXPs (Internet Exchange
+Point)
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Estructura de Internet (Core Cont’d)
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Ejemplo de la Cobertura de la UNLP
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Resumen
+Concepto de protocolo y modelos en capas.
+Modelo OSI, Modelo TCP/IP, PDUs.
+Comunicaci´on peer-to-peer.
+Clasiﬁcaci´on de redes.
+Modelo TCP/IP en modelo de Internet.
+Estructura de Internet.
+Est´andares de Internet RFCs.
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+
+Fuentes de Informaci´on
+Kurose/Ross: Computer Networking (6th Ed).
+Andrew S. Tanenbaum. Computer Networks (5th Edition).
+Willam Stallings. Data & Computer Communications (8th
+Edition).
+Wikipedia http://www.wikipedia.org.
+http://www.rfc-editor.org/overview.html.
+ftp://ftp.rfc-editor.org/in-notes/rfc2026.txt.
+http://www.isoc.org/internet/history/brief.shtml.
+http://isoc.org/wp/ietfjournal/?p=454.
+Internet ...
+Redes y Comunicaciones
+Introducci´on a las Redes de Computadoras
+

@@ -1,0 +1,390 @@
+Introducci´on a Capa de Aplicaci´on
+Redes y Comunicaciones
+0-0
+
+✬
+✫
+✩
+✪
+Funciones de la Capa de Aplicaci´on
+Provee servicios de comunicaci´on a los usuarios ( Capa 8 ;) ) y
+a las aplicaciones, incluye las aplicaciones mismas.
+Existe modelo de comunicaci´on Machine to machine (M2M),
+no hay usuarios (personas).
+Interfaz con el usuario -User Interface (UI)- u otras
+aplicaciones/servicios.
+Las aplicaciones que usan la red pertenecen a esta capa.
+Los protocolos que implementan las aplicaciones tambi´en.
+Existen aplicaciones que NO son de red que deben trabajar
+con aplicaciones/servicios para lograr acceso a la red.
+1
+
+✬
+✫
+✩
+✪
+Componentes de la Capa de Aplicaci´on
+Elementos de capa de aplicaci´on: Programas que corren en
+(diferentes) plataformas y se comunican entre s´ı y los
+protocolos que implementan.
+Las aplicaciones en la mayor´ıa de los casos corren en los
+nodos ﬁnales(end-systems), no en el n´ucleo de la red. (m´as
+f´acil el desarrollo y uso), siguen principio end-2-end.
+Qu´e cubre?: Se ver´a el enfoque orientado a Internet, en el
+cual la capa de Aplicaci´on integra:
+• Capa de Aplicaci´on propiamente dicha del modelo OSI.
+• Capa de Presentaci´on del modelo OSI.
+• Capa de Sesi´on del modelo OSI.
+2
+
+✬
+✫
+✩
+✪
+Modelo OSI
+3
+
+✬
+✫
+✩
+✪
+Capa de Sesi´on
+Administra las conversaciones/di´alogos entre las aplicaciones.
+Podr´ıa proveer mecanismos transaccionales o de
+sincronizaci´on: COMMIT, CHECKPOINT, ROLLBACK.
+Maneja actividad.
+Informar Excepciones.
+Ejemplo concreto RPC (Remote Procedure Call) en NFS.
+A menudo las facilidades del lenguaje de acceso a bases de
+datos: SQL podr´ıa verse como un ejemplo.
+Integrada en las aplicaciones de red mismas.
+Podr´ıa estar ausente.
+4
+
+✬
+✫
+✩
+✪
+Capa de Sesi´on (Consideraciones)
+B´asicamente la Capa de sesi´on se podr´ıa ver como un invento
+de la ISO.
+Ninguna de las redes existentes ten´ıan esta capa (salvo
+algunos servicios de modelo OSI aparecen en SNA).
+La capa de sesi´on es muy “delgada”, con relativamente pocas
+caracter´ısticas.
+En general no se utiliza.
+5
+
+✬
+✫
+✩
+✪
+Capa de Presentaci´on
+Conversi´on y codiﬁcaci´on de datos a codiﬁcaciones comunes,
+ej: ASCII, EBDIC, charset ISO-8859-1, UTF-8, Unicode16.
+Compresi´on y descompresi´on de datos.
+Cifrado y de-cifrado de datos.
+Deﬁne formatos y algoritmos para esto: JPEG, MPEG, LZW,
+AES, DES, IDEA.
+Ejemplo concreto: XDR (External Data Representation) en
+NFS.
+Integrada en las aplicaciones de red mismas.
+6
+
+✬
+✫
+✩
+✪
+Capa de Aplicaci´on
+Deﬁne el formato de los mensajes. Existen protocolos que
+trabajan de forma binaria, por ejemplo usando ASN y otros en
+forma textual ASCII como HTTP.
+Deﬁne la sem´antica de cada uno de los mensajes.
+Deﬁne como debe ser el di´alogo (intercambio de mensajes).
+Que mensajes se deben intercambiar.
+Ejemplo concreto: Protocolo HTTP y sus implementaciones
+mediante servidores WEB y browsers (navegadores).
+7
+
+✬
+✫
+✩
+✪
+Capa de Aplicaci´on
+Deﬁne el formato de los mensajes. Existen protocolos que
+trabajan de forma binaria, por ejemplo usando ASN y otros en
+forma textual ASCII como HTTP.
+Deﬁne la sem´antica de cada uno de los mensajes.
+Deﬁne como debe ser el di´alogo (intercambio de mensajes).
+Que mensajes se deben intercambiar.
+Ejemplo concreto: Protocolo HTTP y sus implementaciones
+mediante servidores WEB y browsers (navegadores).
+8
+
+✬
+✫
+✩
+✪
+Modelos de Comunicaci´on de Aplicaciones
+Modelo Mainframe (dumb client).
+Modelo Cliente/Servidor.
+Modelo Peer to Peer (P2P).
+Modelo H´ıbrido.
+9
+
+✬
+✫
+✩
+✪
+Modelo de Mainframe Centralizado
+Modelo de Carga concentrada.
+El cliente es “tonto” (dumb) solo corre la comunicaci´on y la
+interfaz f´ısica con el usuario (ej. terminal).
+El servidor pone todo el procesamiento.
+Modelo antiguo que resurge con thin-clients.
+Modelo puro: el mainframe es el que decide cuando le da el
+control al cliente
+Modelo puro: el mainframe maneja el di´alogo de las
+comunicaciones.
+Cliente ejecuta en el mainframe.
+Ejemplo: Sistema SNA con Mainframe IBM S/370 y terminales
+10
+
+✬
+✫
+✩
+✪
+3270 (las terminales verdes del antiguo sistema de alumnos
+!!!).
+Servidor de Terminales: X11, VNC, Cytrix Metaframe,
+VMWARE PCoIP, LTS, Virtualizaci´on.
+11
+
+✬
+✫
+✩
+✪
+Modelo de Mainframe Centralizado (Cont’d)
+12
+
+✬
+✫
+✩
+✪
+Modelo de Mainframe Centralizado (Cont’d)
+13
+
+✬
+✫
+✩
+✪
+Modelo de Cliente/Servidor
+Modelo de Carga compartida.
+Idea inicial: el cliente pone procesamiento de interfaz.
+El servidor pone el resto del procesamiento.
+Existen modelos en varios tiers (2 tiers, 3 tier o multi-tier).
+El servidor corre servicio esperando de forma pasiva la
+conexi´on.
+Cliente se conectan al servidor y se comunican a trav´es de
+este.
+Ejemplo: File Server v´ıa NFS o FTP.
+Moldeo asim´etrico 1 a N, M a N (donde M<N).
+14
+
+✬
+✫
+✩
+✪
+Modelo de Cliente/Servidor (Cont’d)
+15
+
+✬
+✫
+✩
+✪
+Modelo de Peer-to-Peer
+Modelo de Carga completamente compartida y distribuida.
+Los peers (participantes) pueden cumplir rol de cliente,
+servidor o ambos en un instante.
+Sistema escalable en cuanto a rendimiento.
+Sistema no escalable en cuanto a administraci´on.
+Ejemplo: redes legadas para compartir archivos: Novell Lite,
+Microsoft Windows for Workgroup basado en LAN Manager
+(sobre NetBEUI), Algo m´as actual: Gnutella, Bittorrent.
+(servicio de ﬁle sharing totalmente P2P)
+Modelo asim´etrico N a N.
+16
+
+✬
+✫
+✩
+✪
+Modelo de Peer-to-Peer (Cont’d)
+17
+
+✬
+✫
+✩
+✪
+Modelo de Peer-to-Peer H´ıbrido
+Modelo de Carga compartida y distribuida.
+Los peers (participantes) pueden cumplir rol de cliente,
+servidor o ambos en un instante.
+Existen diferentes tipos de nodos con diferente roles.
+Hay nodos centrales donde se registra la informaci´on y al resto
+de los nodos.
+Sistema escalable en cuanto a rendimiento.
+Sistema m´as escalable que P2P puro?.
+Ejemplos: eDonkey (y sus variantes aMule, eMule), Napster,
+IM, Skype.
+Moldeo asim´etrico M a N.
+18
+
+✬
+✫
+✩
+✪
+BitTorrent
+Protocolo para el intercambio de archivos grandes de forma
+masiva como peer-to-peer (P2P).
+Desarrollado originalmente por un programador, Bram Cohen
+(software libre).
+Cuando alguien quiere compartir un archivo genera un archivo
+.TORRENT.
+A diferencia de otros P2P no tiene ´ındices de b´usquedas, si
+existen WEBs que permite localizar archivos: Mininova,
+Thepiratebay, Ktorrents, TorrentReactor.
+19
+
+✬
+✫
+✩
+✪
+BitTorrent (Cont’d)
+.TORRENT. Direcci´on del TRACKER para unirse al grupo de
+PEERs (m´as informaci´on de archivo).
+Desde el TRACKER se obtiene PEERs: SEEDs (contienen
+archivo completo) y LEECHERs (contienen archivo parcial). El
+TRACKER se actualiza con el nuevo PEER.
+La comunicaci´on con el TRACKER habitualmente se hace
+sobre HTTP, o podr´ıa ser sobre FTP.
+Los archivos se dividen en chunks, cada uno puede ser
+descargado de un PEER diferente.
+Se conecta con otros PEERs y comienza la descarga. Cada
+chunk se comparte con otros PEERs. Utiliza el port 6881 y
+escanea hacia arriba.
+20
+
+✬
+✫
+✩
+✪
+BitTorrent (Cont’d)
+Cuando baja trabaja de forma aleatoria o “rarest ﬁrst
+algorithm”, trata de bajar los chunks con menos n´umeros de
+copias.
+Por cada archivo puede haber como m´aximo 4 PEERs
+remotos descargando. Los peers se rankean, se deja bajar de
+aquellos que mantienen una buena relaci´on de bajada y
+subida con el PEER.
+Se seleccionan PEERs aleatoriamente cada determinado
+tiempo.
+BitTorrent puede trabajar con NAT, si el cliente se conecta
+(outbound connection) a otro PEER que tiene IP p´ublica y esta
+conexi´on se usa para download y upload. Es conveniente
+habilitar port forwarding.
+21
+
+✬
+✫
+✩
+✪
+Se puede restringir download y upload rate.
+22
+
+✬
+✫
+✩
+✪
+BitTorrent (Cont’d)
+23
+
+✬
+✫
+✩
+✪
+Skype
+Protocolo propietario que implementa VoIP.
+Nodos clientes pueden ser solo nodos o Super-nodos.
+Super-nodos act´uan como directorios.
+Estos nodos hace de STUN, permitiendo conexi´on de
+computadoras detr´as de NAT.
+Los super-nodos crean P2P Overlay networks (Una red sobre
+otra red).
+Corren el software tradicional de los clientes, pero sobre la
+Internet p´ublica.
+Super-nodos se conectan entre si. Los Super-nodos utilizan
+servicios externos de autenticaci´on.
+Existen Mega Super-nodos que pertenecen a Skype.
+24
+
+✬
+✫
+✩
+✪
+Skype (Cont’d)
+25
+
+✬
+✫
+✩
+✪
+Requerimientos de Aplicaciones
+Cada aplicaci´on puede tener diferentes requerimientos:
+seguridad, tiempo de respuesta, conﬁabilidad, optimizar ancho
+de banda, etc...
+Diferentes Alternativas de Transporte.
+26
+
+✬
+✫
+✩
+✪
+• Transport Control Protocol (TCP).
+• User Datagram Protocol (UDP).
+• Otras alternativas: Stream Control Transmission Protocol (SCTP),
+Reliable User Datagram Protocol (RUDP).
+27
+
+✬
+✫
+✩
+✪
+Direccionamiento de Procesos
+Las aplicaciones son implementadas por los SO como
+procesos.
+Conceptos de IPC (Inter-Process Communication).
+Para que un proceso reciba un mensaje, ´este debe tener un
+identiﬁcador ´unico.
+Identiﬁcador de host no suﬁciente, se agrega identiﬁcador de
+proceso (independiente del SO) n´umero de puerto.
+Servicio de multiplexaci´on provisto por nivel de transporte.
+Accedido mediante la API de Sockets BSD, Winsocks de
+Microsoft o TLI/XTI de AT&T.
+28
+
+✬
+✫
+✩
+✪
+Fuentes de Informaci´on
+Kurose/Ross: Computer Networking (6th Edition).
+Andrew S. Tanenbaum. Computer Networks (4th Edition).
+Wikipedia http://www.wikipedia.org.
+Bittorrent: http://www.bittorrent.org.
+Understanding Today’s Skype Outage: Explaining Supernodes,
+Dan York, Dec 2010.
+Slides de Kurose/Ross Computer Networking 6ta edici´on.
+Internet ...
+29
+
