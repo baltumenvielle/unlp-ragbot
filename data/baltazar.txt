@@ -1,0 +1,7 @@
+Baltazar Menvielle tiene 20 años y estudia Licenciatura en Sistemas en la UNLP.
+En la universidad, Baltazar estudia junto con Federico y Joaquín,
+Tiene tres hermanos: Mariano, Luciano y Francisco. Además, tiene dos gatas: Adriana y Greta.
+Últimamente, estuvo estudiando aprendizaje profundo.
+Implementó papers como AlexNet, GoogLeNet y ResNet en PyTorch.
+En este momento, está intentando armar un sistema RAG (Retrieval-Augmented Generation) junto con la ayuda de Ollama.
+Está pensando en desarrollar el sistema RAG con ayuda de sus compañeros de la universidad, Federico y Joaquín.

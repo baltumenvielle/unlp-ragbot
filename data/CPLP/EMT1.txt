@@ -1,0 +1,385 @@
+# Evaluación de Lenguajes
+
+Los *lenguajes de programación* son herramientas que usamos los programadores para comunicarnos con las **máquinas** y las **personas**. El valor de éstos se debe juzgar según la forma en que afectan a la producción del software y a la facilidad con la que se pueden integrar a otras herramientas.
+
+Para evaluar a un lenguaje, se usan una serie de criterios que el lenguaje debe cumplir para decir que se trata de un lenguaje “bueno” o “malo”:
+
+### Simplicidad y Legibilidad
+
+Los lenguajes de programación deberían poder producir programas fáciles de **leer** y **escribir**, resultar fáciles a la hora de aprenderlo o enseñarlo, y dejar en claro al leer las instrucciones de un programa cómo funciona el algoritmo y qué datos maneja.
+
+Cuestiones que atentan contra este principio pueden ser, manejar muchas componentes elementales, conocer los subconjuntos de los componentes (rompe con el concepto de *caja negra*), una ***sintaxis*** distinta para un mismo concepto ***semántico***, o viceversa.
+
+### Claridad en los Bindings
+
+La ***ligadura*** o ***binding*** es el proceso mediante el cual se asocia un identificador con una entidad en memoria o un valor en el tiempo de ejecución.
+
+Los elementos de los lenguajes de programación pueden ligarse a sus atributos o propiedades en diferentes momentos (*definición*, *implementación*, *escritura*, *compilación*, *ejecución*) y la ligadura debe ser clara.
+
+### Confiabilidad
+
+Ésta se relaciona con la **seguridad** que uno tiene para predecir qué hace un programa en la lectura del código mismo.
+
+Cuanto antes se encuentren los errores de un programa, menos costoso resulta realizar los arreglos correspondientes. También se debe agregar un soporte al ***manejo de excepciones*** para interceptar errores en tiempo de ejecución.
+
+### Soporte
+
+El lenguaje debería ser **accesible** para cualquiera que quiera usarlo o instalarlo (idealmente *open source*) y ser implementable en distintas plataformas. También deberían existir **recursos** para poder familiarizarse con el lenguaje (tutoriales, cursos, etc.)
+
+### Abstracción
+
+Es la capacidad de definir y usar estructuras u operaciones complicadas, de manera que sea posible ***ignorar muchos de los detalles*** que éstas pueden presentar. Es un concepto clave para poder manejar la complejidad, **abstracción** de procesos y de datos, ya que le ahorran tiempo de desarrollo al programador, al proporcionar algoritmos ya implementados.
+
+### Ortogonalidad
+
+Es la posibilidad que ofrece el lenguaje para poder **combinar** sus elementos sin producir errores, es decir, un pequeño conjunto de construcciones se puede combinar de forma **consistente** y **predecible**. Las reglas del lenguaje son *claras*, *uniformes* y *coherentes*.
+
+Se le dice *ortogonalidad* por la propiedad matemática, que indica que **dos características son independientes**, o sea que dos características del lenguaje no interfieren entre sí.
+
+### Eficiencia
+
+El lenguaje debe utilizar el tiempo y espacio de manera *eficiente*, consumiendo pocos recursos de memoria y **tiempo de ejecución**. Además, es ideal que el lenguaje venga **optimizado para tareas específicas**.
+
+# Sintaxis y Semántica
+
+Sabiendo que un lenguaje de programación es una notación formal para describir algoritmos a ser ejecutados en una computadora, sabemos que tiene una **sintaxis** y una **semántica**.
+
+- La ***sintaxis*** se define como un conjunto de regla**s** que **definen** cómo componer letras, dígitos y otros caracteres para formar los programas.
+- La ***semántica*** se define como un conjunto de reglas que **dan significado** a los programas que ya son sintácticamente válidos. Es decir, no existe el concepto de semántica sin antes existir la validez sintáctica.
+
+Definir y conocer la sintaxis y la semántica de un lenguaje es beneficioso, ya que proporcionan mecanismos para que una persona o computadora pueda decir **si el programa es válido** (*sintaxis*), y si lo es, **qué significa** (*semántica*).
+
+## Sintaxis
+
+La sintaxis debe ayudar al programador a escribir programas *correctos sintácticamente*. Establece reglas que sirven para que el programador se comunique con el procesador. Debe contemplar soluciones a cosas como la *legibilidad*, *verificabilidad*, *traducción*, y *falta de ambigüedad* de un **programa**.
+
+La definición formal es que establece reglas que definen cómo deben combinarse las componentes básicas (***words***) para formar sentencias y programas.
+
+Los elementos que componen la sintaxis son:
+
+- **Alfabeto o conjunto de caracteres**: es el conjunto finito de **símbolos** admitidos en el lenguaje. Cada lenguaje implementa el uso de bits como lo defina (*ASCII*, *Unicode*, etc.).
+- **Identificadores**: normalmente son una **cadena de letras y dígitos** (*deben comenzar con letra*). Deben tener una **longitud acotada** pero no necesariamente restringida, ya que se perdería *legibilidad*.
+- **Operadores**: se usan operadores de suma y resta, pero los demás, como la raíz cuadrada o la potencia, no estan consensuados.
+- **Comentarios**: hacen que los programas sean más legibles, ya que los programas suelen ser más leídos que escritos.
+- **Palabras clave y reservada**: las **palabras clave** son palabras que tienen un significado en cierto contexto. Las **palabras reservadas** son palabras claves que no pueden ser usadas por el programador como identificador de otras entidades, ya que están reservadas por parte del lenguaje. Las palabras reservadas suelen cambiar, aunque son un conjunto acotado, el programador debe tener cuidado ya que al actualizar el lenguaje, algunas sentencias podrían perder validez ante el cambio.
+
+### Estructura sintáctica
+
+- **Vocabulario**: conjunto de caracteres y palabras **necesarias** para construir expresiones, sentencias y programas. Las words no son elementales, se construyen a partir del alfabeto del lenguaje. Por ejemplo, `if`, `while`, `return`, etc.
+- **Expresiones**: construcciones sintácticas compuestas de **operadores** y **operandos**, de cuya evaluación se obtiene un valor, bloques sintácticos básicos a partir de los cuales se construyen las sentencias y programas. Por ejemplo: `x * y`
+- **Sentencias**: es el componente sintáctico **más importante**. Tiene un fuerte impacto en la facilidad de legibilidad y escritura. Hay sentencias *simples (*`x = 5`*)*, *estructuradas (*`while x > 0 print(x)`*)*, y *anidadas* (conjunto de las otras dos).
+
+### Reglas léxicas y sintácticas
+
+- **Reglas léxicas**: conjunto de reglas para formar las *words* a partir de los caracteres del alfabeto.
+- **Reglas sintácticas**: conjunto de reglas que definen cómo formar a partir de esas *words*, las **expresiones** y **sentencias**.
+
+### Tipos de sintaxis
+
+- **Abstracta**: se refiere básicamente a la estructura
+- **Concreta**: se refiere básicamente a la parte léxica
+- **Pragmática**: se refiere básicamente al uso práctico
+
+![image.png](attachment:09cc6d39-ea8d-4829-a2c1-42d9953a0128:image.png)
+
+Son diferentes respecto a la **sintaxis concreta**, porque existen diferencias léxicas entre ellas, pero son iguales respecto a la sintaxis abstracta, ya que ambas tienen la misma estructura.
+
+![image.png](attachment:8efedcd2-ea02-421f-ad34-51fd658aa8fe:image.png)
+
+### Definición de sintaxis
+
+Se necesita una notación formal para **descibir** la sintaxis de un lenguaje, una descripción finita para definir un conjunto infinito de posibles programas bien escritos. Resulta una ventaja para minimizar interpretaciones, testear y verificar programas, analizar la correctitud de un programa, etc.
+
+Se pueden usar herramientas para definir la sintaxis, como:
+
+- **BNF (Backus Naun Form)**: es una notación formal para descibir la sintaxis. Es un ***metalenguaje** (lenguaje para definir otros lenguajes) *****y utiliza ***metasímbolos** (símbolos para definir otros símbolos)*. Define las reglas por medio de producciones:
+
+![image.png](attachment:52f5369e-b896-4a5f-ad5d-eb82d9f300cd:image.png)
+
+- **Gramática**: conjunto de reglas finita que define un conjunto infinito de posibles sentencias válidas en el lenguaje. Son la **base de los lenguajes de programación**. Utilizan producciones recursivas, las cuales permiten describir un **lenguaje infinito**. A continuación, los componentes de una gramática:
+
+![image.png](attachment:d104ece2-2817-4628-8de4-455d9a14bc3c:image.png)
+
+- **Gramáticas libres de contexto**: la producción depende del símbolo de la izquierda.
+- **Gramáticas sensibles al contexto**: las reglas dependen del entorno o del contexto en el que aparece un símbolo *(semántica)*.
+- **Árboles sintácticos**: representan cómo una cadena se **deriva** desde el símbolo inicial según la gramática. Muestra cómo se aplica cada regla gramática paso a paso. Si una misma cadena puede tener más de un árbol de derivación, la gramática es **ambigua**.
+
+![image.png](attachment:a64f1b50-a954-4f26-b6b8-bf0e85bd887c:image.png)
+
+- **EBNF (Extended BNF)**: se describen sintaxis libres de contexto. Se incorporan conceptos como la repetición, opción, alternativas y agrupación, para más claridad.
+
+![image.png](attachment:0863e5da-40ec-4e42-8dc1-02869de541fd:image.png)
+
+- **Diagramas sintácticos (CONWAY)**: grafo sintáctico que representa las reglas de una gramática como un **diagrama de flujo**. Cada nodo representa una decisión sintáctica. Un string es válido si hay un **camino desde la entrada hasta la salida** que lo recorra completamente.
+
+![image.png](attachment:f341f101-e36d-4a2d-a3d5-ad5427a52e2a:image.png)
+
+## Semántica
+
+Se describe el **significado** de los símbolos, palabras y frases de un lenguaje, ya sea natural o informático, que es *sintácticamente válido*. Esto se hace para poder darle significado a una construcción del lenguaje.
+
+**La semántica no es igual en todos los lenguajes**, esto se debe a las distintas características de los lenguajes, que pueden diferir entre sí.
+
+Para detectar los errores semánticos de un programa, no se puede describir con BNF/EBNF, sino que se debe usar otra gramática, para la cual hay dos tipos:
+
+### Semántica estática
+
+El análisis para el chequeo se hace en **compilación (antes de la ejecución)**. No está relacionada con el significado de la ejecución del programa, sino con las formas válidas (sintaxis). El análisis está ubicado entre el análisis sintáctico y el análisis de semántica dinámica, pero más cercano a la sintaxis.
+
+Se usa para detectar errores **que no tienen que ver con la lógica en sí**, sino con cosas como:
+
+- El tipo de una variable.
+- Que uses variables que no declaraste.
+- Que el número de argumentos en una función sea correcto.
+- Que una operación esté bien definida (`int + string`, por ejemplo, no tiene sentido).
+
+Entonces, aunque parezca lógico, si **viola reglas del lenguaje**, el compilador lo puede detectar **sin necesidad de ejecutar el programa**.
+
+Para analizarla se usa una **gramática de atributos**, que son como EBNF/BNF, pero cada símbolo tiene *atributos* asociados. Un ***atributo*** es información extra que el compilador necesita saber (tipo de dato, valor numérico, parámetros de una función, etc.).
+
+Se dan reglas similares a BNF y con ayuda de una ***tabla***, el compilador busca una regla semántica correspondiente. La tabla tiene dos entradas, una que dice la **regla sintáctica** (tipo BNF) y otra que tiene la **regla semántica** (ecuación).
+Si una de esas reglas **no se cumple**, el compilador lanza un **error semántico**, y no deja compilar el programa.
+
+A través de la ejecución de las **reglas semánticas**, se realizan tareas como:
+
+- Ingresar símbolos a la **tabla de símbolos** (variables, funciones, etc.).
+- **Detectar errores** y mostrar mensajes informativos.
+- Detectar **nombres repetidos** (variables duplicadas).
+- **Controlar tipos** de variables y expresiones (por ejemplo, `int + string` no es válido).
+- Rechazar **combinaciones no permitidas** según las reglas del lenguaje.
+- Detectar **otras restricciones semánticas** que no puede ver la sintaxis.
+- **Generar código intermedio** o información útil para etapas posteriores del compilador.
+
+### Semántica dinámica
+
+Es la parte que **describe qué hace realmente un programa cuando se ejecuta**. No basta con que esté bien escrito (sintaxis), también importa **qué significa lo que hace**.
+
+Los programas sólo se pueden ejecutar si son **correctos** en la sintaxis y la semántica estática.
+
+Es difícil de escribir formalmente, no hay una herramienta estándar como BNF para sintaxis, y es complicado explicar qué hace un programa según la **plataforma** o con entradas distintas. Por lo tanto, se usan diversas alternativas:
+
+- **Semántica operacional (informal)**: describe la ejecución paso a paso usando **otro lenguaje de más bajo nivel** sobre una máquina abstracta. Cada instrucción cambia el estado de esa máquina.
+- **Semántica axiomática (formal)**: el programa se ve como una máquina de estados. Cada instrucción cambia el estado. Se usan predicados lógicos para definir **pre** y **postcondiciones**. **Ejemplo**: dividir `a` entre `b` Precondición: `{b ≠ 0}` Sentencia: `a / b` Postcondición: `{a = b * c + r ∧ r < b}` . Es decir, se demuestra la corrección de un programa usando lógica.
+- **Semántica denotacional (abstracta)**: se usan **funciones matmáticas** y cada parte del lenguaje se representa como una *función recursiva*. Relaciona la entrada y salida del programa de forma matemática. Define el **significado** de cada construcción del lenguaje como una función.
+
+# Procesamiento de un lenguaje
+
+## Traducción
+
+Las computadoras sólo entienden el **lenguaje de máquina**, que utiliza el *sistema binario*. Antes, cuando se programaba con este lenguaje, era muy complejo y se presentaban bastantes errores.
+
+- Una solución a este problema fue reemplazar patrones de bits por un código (**código mnemotécnico**), dando paso al **lenguaje** y el **programa *ensamblador***, el cual convertía a código máquina las instrucciones. Cada familia de procesadores tenía su propio set de instrucciones,lo que producía imposibilidades para intercambiar programas entre distintas máquinas, diferntes versiones para una misma CPU, etc.
+- Otra solución fue la implementación de lenguajes *de alto nivel*, los cuales permitieron la **abstracción**. Estos usan programas **traductores del lenguaje**, que permiten ejecutar las instrucciones mediante traducciones a lenguaje de máquina.
+
+Las traducciones del lenguaje pueden ser implementadas como **compiladores**, **interpretadores**, o usando **ambos**.
+
+## Interpretación
+
+Dado un código escrito en un lenguaje interpretado, existe un programa externo (*intérprete*), el cual realiza la traducción del lenguaje interpretado en el momento de ejecución.
+
+La secuencia de pasos que se realizan cuando se ejecuta sobre cada una de las sentencias es:
+
+- **Lectura**
+- **Análisis**
+- **Decodificación**
+- **Ejecución**
+
+El intérprete sólo pasa por **ciertas instrucciones**, según sea la ejecución. Cada vez que se vuelve a ejecutar el programa, se repite toda la secuencia.
+
+Cuenta con una serie de herramientas para la traducción a lenguaje de máquina. Por cada posible acción hay un ***subprograma*** en lenguaje de máquina que ejecuta esa acción. La interpretación se realiza llamando a estos subprogramas en la secuencia adecuada hasta generar el resultado de la ejecución.
+
+![image.png](attachment:1d4bbad5-c846-49a9-ac3a-95bee8f0c6dc:image.png)
+
+Un intérprete ejecuta la siguiente secuencia de acciones:
+
+- **Obtiene** la próxima sentencia
+- **Determina** la acción a ejecutar
+- **Ejecuta** la acción
+
+## Compilación
+
+Dado un programa escrito con un lenguaje de alto nivel, hay un programa llamado ***compilador***, el cual realiza la traducción a lenguaje de máquina antes de su ejecución.
+
+Se pasa por todas las instrucciones antes de la ejecución, y se genera un **código** que se guarda y se puede *reusar* ya compilado. 
+
+![image.png](attachment:bd0f2d5c-4b7a-4873-b07f-d90f750735b4:image.png)
+
+Se puede generar, o un **lenguaje objeto** (normalmente ejecutable, escrito en lenguaje de *máquina*), o un **lenguaje intermedio** (lenguaje *ensamblador*)
+
+La compilación puede ejecutarse en 1 o 2 etapas:
+
+1. **Etapa de análisis**: el compilador lee el código fuente y lo descompone para entenderlo. Se divide en 3 subetapas:
+    1. **Análisis léxico** (hecho por el *Scanner*): lee el código palabra por palabra. Detecta cosas como variables, números, operadores, palabras reservadas, etc. (*tokens*). Filtra cosas que no importan, como espacios, tabulaciones, etc. Si algo está mal escrito, hay un error. Se guardan los nombres de las variables en la tabla de símbolos.
+    2. **Análisis sintáctico** (hecho por el *Parser*): toma los tokens y verifica si están en el orden correcto. Se fija si la estructura del código tiene sentido según las reglas del lenguaje. Si encuentra errores de estructura (como un `)` sin `(`, o una sentencia `if` mal cerrada), los muestra. Crea un árbol sintáctico.
+    3. **Análisis semántico** (estático): se asegura que el código tenga sentido lógico. Guarda tipos de datos, comprueba duplicados, etc. Utiliza una gramática de atributos para evalua el significado del código. Se preparan los datos para la siguiente etapa.
+2. **Etapa de síntesis**: se crea el código ejecutable. Se divide en 3 subetapas:
+    1. **Generación de código intermedio**: se transforma el código en una forma más simple y genérica. Es un paso intermedio entre el código fuente y el máquina.
+    2. **Optimización** (opcional): mejora el código intermedio para que use menos memoria, se ejecute más rápido y elimina instrucciones innecesarias.
+    3. **Generación de código final**: se traduce todo a código máquina. Si hay partes separadas del programa, linkeditor junta todo. El loader finalmente carga el programa a la memoria para ejecutarse.
+
+## Compilador vs Intérprete
+
+**Intérprete**:
+
+- Ejecuta el programa **línea por línea**
+- El programa fuente es público
+- Sigue el **orden *lógico*** (no necesariamente recorre todo)
+- Por cada sentencia que pasa realiza el proceso de decodificación (lee, analiza y ejecuta) para determinar las operaciones y sus operandos. Es **repetitivo**
+- Si la sentencia está en un proceso iterativo (ej.: for/while), se realizará la tarea de decodificación tantas veces como sea requerido
+- La velocidad del proceso se **afecta** por bucles
+- Más **lento en ejecución**
+- Para ser ejecutado en otra máquina sí o sí *se necesita el intérprete instalado*
+- Al no pasar por todas las sentencias, **ocupa menos espacio**
+- Tablas de símbolos, variables y otros se generan cuando se usan en forma dinámica
+- Se puede ubicar dónde se produjo el error (más fácil de detectarlos y corregirlos)
+
+**Compilador**:
+
+- Se utiliza **antes de la ejecución**
+- El programa fuente no será público
+- Se produce un programa ejecutable equivalente en **lenguaje objeto**, que ya es compilado
+- Sigue el **orden *físico*** de las sentencias (recorre todo)
+- No repite lazos
+- Traduce todo *de una sola vez*
+- La velocidad de compilar depende del tamaño del código
+- Más rápido de ejecutar desde el punto de vista del hardware
+- Como pasa por todas las sentencias, se ocupa bastante espacio
+- Cosas cómo tablas de símbolos, variables, etc., se generan siempre se usen o no
+- Es casi imposible ubicar el error
+
+## Combinación de técnicas
+
+Interpretación o compilación pura son dos extremos. En la práctica, muchos lenguajes combinan ambas técnicas para sacar provecho a cada una. Algunos entornos contienen tanto la **interpretación** como la **compilación**.
+
+### Interpretación, luego compilación
+
+Se utiliza el intérprete en la etapa de desarrollo para facilitar el diagnóstico de errores. Con el programa validado se compila para generar un código objeto más eficiente.
+
+### Compilación, luego interpretación
+
+Se hace traducción a un **código intermedio** a bajo nivel que luego se interpretará.
+
+Sirve para generar **código *portable***, es decir, fácil de transferir a diferentes máquinas y con diferentes arquitecturas.
+
+![image.png](attachment:775900ff-49f0-42e7-ba21-c6d214b9eeca:image.png)
+
+# Semántica operacional
+
+Se ***describe*** el significado preciso de un programa y se ***verifica*** el resultado final de la ejecución de un programa. La **semántica operacional** es fundamental para diversos aspectos del proceso de desarrollo de software, como la verificación de programas, o la compresión de cómo se ejecutan los programas en un nivel más bajo.
+
+![image.png](attachment:9fdba18b-23b0-49ac-913c-0955eadb7b8f:image.png)
+
+## Bindings
+
+Los programas trabajan con ***entidades***, estas entidades tienen ***atributos***, los cuales tienen que establecerse antes de poder usar la entidad, por lo que se hace el ***binding***, es decir, el momento en el que el atributo se asocia con un valor.
+
+Hay diferencias entre los lenguajes de programación en:
+
+- El número de entidades
+- El número de atributos que se les pueden ligar
+- El momento de la ligadura cuando toma el valor (*binding time*).
+- La estabilidad de la ligadura:
+    - Una vez establecida se puede modificar? o queda fija? Por ej. Se puede cambiar el tipo de unabvariable que se asigno en compilación en tiempo de ejecución?
+
+### Ligadura estática
+
+- Se establece antes de la ejecución.
+- No se puede modificar.
+
+### Ligadura dinámica
+
+- Se establece durante la ejecución.
+- Sí puede modificarse durante la ejecución, de acuerdo a alguna regla específica del lenguaje (hay excepciones, como constantes).
+
+## Variables
+
+Una **variable** es una **celda de memoria** que ocupa una ***dirección***, a la cual mediantebuna **sentencia de asignación** se le puede **brindar** y **modificar** el contenido que almacena, este contenido tiene una alta probabilidad de **cambiar** a lo largo de la ejecución de un programa, a excepción de que hablemos de una *constante*.
+
+Es una abstracción:
+
+- La **variable** es una abstracción de una **celda de memoria**
+- El **nombre** es una abstracción de la **dirección de memoria**
+- La **sentencia de asignación** es una abstracción de la **modificación destructiva** del valor que almacena la celda
+
+Una variable tiene los siguientes 5 atributos:
+
+### Nombre
+
+Es una string de caracteres que se usa para **referenciar** a la variable (*identificador*). Es introducido por una **sentencia de declaración**. Según el lenguaje, puede tener longitud máxima, ciertos caracteres aceptados o incluso ser *case sensitive*.
+
+Algunos lenguajes definen un ***espacio de nombres***, el cual sería una “zona lógica” del código donde los nombres están **agrupados** para evitar conflictos. Organiza más el código.
+
+### **Alcance**
+
+Es el **rango** de instrucciones en el que se conoce el nombre y puede ser referenciado. Las instrucciones del programa pueden **manipular** las variables a través de su nombre dentro de su alcance. Afuera de este alcance son *invisibles*.
+
+El binding también afecta al alcance, ya que se usa cuando aparece referenciada en el código una variable que no es local, para saber a dónde va a buscarla y saber a quién pertenece:
+
+- **Ligadura por alcance estático o léxico**: se decide en **tiempo de compilación** mirando el código. Está basada en dónde está escrita la variable.
+- **Ligadura por alcance dinámico**: se decide en **tiempo de ejecución**. Busca hacia atrás en el flujo de ejecución cuál fue su última definición. Es poco usada.
+
+Una variable también puede ser clasificada por su alcance:
+
+- **Global**: son todas las referencias a variables creadas en el programa principal. Son visibles en todo el programa.
+- **Local**: son todas las referencias a variables que se han creado dentro de una unidad. Sólo es visible en la unidad.
+- **No local**: son todas las referencias que se utilizan dentro del subprograma pero que no han sido creadas en él.
+
+### **Tipo**
+
+Es el **tipo de variables** definidas, tiene asociados **rango de valores** y conjunto de **operaciones permitidas**. Antes de referenciar una variable, hay que ligarle el tipo. Esto ayuda a que el compilador o intérprete detecte errores en forma temprana y a dar **confiabilidad** del código.
+
+Existen distintas clases de tipos:
+
+- **Tipos predefinidos por el lenguaje**: son los tipos base que están descritos en la definición del lenguaje. Cada uno tiene valores y operaciones.
+- **Tipos definidos por el usuario**: permiten al programador **definir nuevos tipos** a partir de los ya definidos y de los constructores. Son esenciales para la organización, abstracción y mantención.
+- **Tipos de datos abstractos (TAD)**: son estructuras que definen operaciones pero ocultan cómo están implementadas. Está compuesto por una colección de operaciones definidas (rutinas). Cada TAD tiene un conjunto de operaciones permitidas. No hay ligadura por defecto.
+
+La ligadura del tipo puede ser tanto estática como dinámica:
+
+- **Estática**: el tipo se decide al compilar. Es más eficiente y seguro.
+    - Explícita: lo define el programador.
+    - Implícita: el lenguaje lo *deduce* (aunque no se aclare).
+    - Inferida: se deduce automáticamente **según el valor** asignado.
+- **Dinámica**: el tipo se asigna en tiempo de ejecución y puede cambiar durante el programa. Es más flexible, pero menos seguro y lento.
+
+Se puede hacer también una conversión de tipos, las cuales pueden ser **implícitas** (el lenguaje convierte automáticamente el tipo) o **explícita** (el programador hace un *casting*).
+
+### **L-value**
+
+Es el **lugar de memoria** asociado con la variable, asociado con el tiempo de vida, siendo éste comprendido entre la ***alocación*** en memoria y la ***liberación*** de la misma.
+
+Hay tres tipos de alocación:
+
+- **Estática**: se reserva al compilar y dura toda la ejecución.
+- **Dinámica**: se reserva en tiempo de ejecución. Puede ser:
+    - Automática: cuando se entra en una función (variables locales).
+    - Explícita: el programador la pide.
+- **Persistente**: persiste más allá de la ejecución (archivos).
+
+### **R-value**
+
+Es el **valor codificado almacenado** en la ubicación de la variable. Una constante puede cambiar su R-value, pero una constante no, por lo tanto su valor debe estar bien alocado.
+
+![image.png](attachment:3c7bf9ce-7dab-4150-80c0-826dbbc91c4d:image.png)
+
+## Estrategias para la inicialización de variables
+
+El proceso de inicializar una variable consiste en **asignarle un valor inicial** antes de su utilización. Hay varias formas de hacerlo:
+
+**Por defecto**: algunos lenguajes asignan valores automáticamente a las variables.
+
+**En la declaración**: es lo más común y recomendable, normalmente se declara e inicializa en una sola línea, si se permite.
+
+**Ignorancia**: la variable puede tener un valor basura, lo que puede causar errores difíciles de detectar.
+
+## Puntero
+
+Es una variable especial que **guarda una dirección de memoria**, no un valor directamente. Apunta a otra variable.
+
+### Alias
+
+Dos o más variables que referencian al mismo objeto o valor en memoria. Si se cambia el objeto usando una variable, se afectan todas las variables que lo comparten. 
+
+### Sobrecarga (Overloading)
+
+Se usa un **mismo nombre para diferentes cosas**. Algunos lenguajes lo permiten, obviamente mientras se cumplan las reglas sintácticas correspondientes.
