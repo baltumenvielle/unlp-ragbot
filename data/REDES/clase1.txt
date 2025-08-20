@@ -1,0 +1,29 @@
+# Clase 1 - Introducción a las Redes de Computadoras
+**Red de Computadoras**: un grupo de computadoras/dispositivos interconectados.
+**Objetivo**: compartir recursos: dispositivos, informaci´on, servicios.
+El conjunto computadoras, software de red, medios y dispositivos de interconexi´on forma un sistema de comunicaci´on.
+Ejemplos: red de la sala de PCs, red Universitaria, Internet.
+**Componentes de un Sistema de Comunicaci´on**
+Fuente (Software).
+Emisor/Transmisor (Hardware).
+Medio de transmisi´on y dispositivos intermedios (Hardware).
+Procesos intermedios que tratan la informaci´on (Software y Hardware).
+Receptor (Hardware).
+Destino (Software).
+Otros: Protocolos (Software), Informaci´on, mensaje transmitido (Software).
+Se˜nal de Informaci´on, materializaci´on del mensaje sobre el medio (Hardware?).
+Fuera del punto de vista sist´emico podemos ver un gran numero de componentes:
+Computadoras, en el modelo de Internet: Hosts (PCs, laptops, servidores).
+Routers/switches, Gateways, AP (Access Points).
+NIC (placas de red), Modems.
+V´ınculos/ enlaces: conformados por:
+Medios: cables, fibras ´opticas, se˜nales electromagn´eticas, antenas, interfaces, etc.
+Programas: Browsers, Servidores Web, Clientes de Mail, Servidores de Streaming.
+Etc...
+Las componentes de la red deben interactuar y combinarse a trav´es de reglas.
+**Protocolo**: El conjunto de conductas y normas a conocer, respetar y cumplir no s´olo en el medio oficial ya establecido, sino tambi´en en el medio social, laboral, etc.
+Un protocolo define el formato, el orden de los mensajes intercambiados y las acciones que se llevan a cabo en la transmisi´on y/o recepci´on de un mensaje u otro evento.
+**Protocolo de Red**: conjunto de reglas que especifican el intercambio de datos u ´ordenes durante la comunicaci´on entre las entidades que forman parte de una red. Permiten la comunicaci´on y est´an implementados en las componentes.
+A principios de los 80’, las compa˜n´ıas comenzaron a implementar redes propias (privadas y cerradas). Primeras Redes Propietarias. Consecuencia: Cada red ten´ıa sus especificaciones propias (protocolos). Resultados: Incompatibilidad. La comunicaci´on entre redes era muy dif´ıcil, evoluci´on m´as lenta, carencia de est´andares. Complejidad de modelos.
+La cantidad de componentes de red a interactuar genera complejidad, se requiere una organizaci´on de las mismas. Se requieren Modelos de Organizaci´on.
+**Modelo en Capas**: Layering, divide la complejidad en componentes reusables. Reduce complejidad en componente m´as peque˜nas. Las capas de abajo ocultan la complejidad a las de arriba, abstracci´on. Las capas de arriba utilizan servicios de las de abajo: Interfaces, similar a APIs. Los cambios en una capa no deber´ıan afectar a las dem´as si la interfaz se mantiene. Facilita el desarrollo, evoluci´on de las componentes de red asegurando interoperabilidad. Facilita aprendizaje, dise˜no y administraci´on de las redes.

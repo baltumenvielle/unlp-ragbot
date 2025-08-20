@@ -1,0 +1,474 @@
+# Unidades o Rutinas
+
+Las **unidades** son *acciones abstractas*, **componentes** de un programa, también llamadas ***rutinas*** (procedimientos o funciones).
+
+- **Procedimiento**: construcción que permite dar nombre a un **conjunto de sentencias** y **declaraciones** asociadas para resolver un subproblema dado. Brinda una solución de código más corta, comprensible y fácilmente modificable. Permiten al programador crear nuevas sentencias. Pueden no recibir ni devolver ningún valor. Los resultados los produce en **variables no locales** o en ***parámetros*** que cambian su valor.
+- **Función**: procedimiento que siempre retorna un valor. Permite al programador crear nuevas operaciones. Se las invoca dentro de ***expresiones*** y lo que calcula reemplaza a la invocación dentro de la expresión.
+
+En algunos lenguajes, las funciones pueden imitar ser procedimientos, al retornar *void* o *None*.
+
+Las rutinas permiten un alto grado de abstracción, permitiéndonos ver sólo que hacen, sin saber ***cómo***.
+
+Las rutinas, al igual que las variables, tienen sus **atributos**:
+
+- **Nombre**: string de caracteres que se usa para **invocar** a la rutina (identificador). Se introduce en su **declaración**.
+- **Alcance**: rango de instrucciones donde se conoce su nombre. Es desde el punto de su declaración hasta algún constructor de cierre. Puede ser estático o dinámico. La activación o invocación **puede estar sólo dentro del alcance** de la rutina.
+- **Tipo**: el encabezado de la rutina define el tipo de los parámetros y el tipo de valor de retorno. También se determina la ***signatura*** (tipo de la rutina). La ***conformidad*** requiere la correspondencia de tipos entre parámetros formales y reales.
+- **L-valor**: lugar de memoria en el que se almacena el cuerpo de la rutina.
+- **R-valor**: la llamada a la rutina causa la ejecución de su código, constituyendo su r-valor. Puede ser **estático**, como normalmente, o **dinámico**, en el cual sería una *variable de tipo rutina*, implementados como punteros a rutinas.
+
+Si el lenguaje distingue entre declaración y definición de una rutina, entonces se pueden manipular de **forma *recursiva***. En **algunas implementaciones de C**, si no se encuentra la declaración de la función o prototipo, se asume un ***prototipo*** que devuelve enteros.
+
+## Comunicación entre rutinas
+
+La comunicación entre rutinas se puede dar, mediante un ***ambiente no local*** (variables globales), o mediante ***parámetros***.
+
+El ambiente no local puede ser usado:
+
+- Mediante regla del **alcance dinámico**: quien llamó a la rutina.
+- Mediante regla del **alcance estático**: donde está contenida la rutina.
+- **Ambiente común explícito**: se definen áreas comunes de código. ADA y FORTRAN lo soportan.
+
+Es más conveniente usar la comunicación mediante parámetros, ante una mayor **legibilidad** (menos repetitivo), **seguridad** (el acceso a ambientes no locales hace que las variables terminan siendo visbiles cuando no es necesario), **flexibilidad** (se pueden transferir más datos y de distinto tipo en cada llamada) ****y **modificabilidad** (si hay errores se sabe exactamente qué cosas se comparten, fácil de depurar). Además, la comunicación en un ambiente no local puede dar a errores, ante una posible ***pérdida de control*** y es generalmente bastante menos claro.
+
+## Parámetros
+
+- **Parámetros formales (parámetro)**: los parámetros que aparecen en la definición de la rutina. Se considera una **variable local** a su entorno.
+- **Parámetros reales (argumento)**: los parámetros con los que se invoca a la rutina. Puede ser un valor, entidad, expresión, etc., que pueden ser locales, no locales o globales.
+
+En general, antes de la invocación, primero se **evalúan los parámetros reales** y luego **se hace la ligadura**.
+
+### Ligadura entre parámetros
+
+La ligadura entre parámetros formales y reales se puede dar de dos formas:
+
+- **Método posicional**: se ligan *uno a uno*, es decir, en el **orden posicional** en el que fueron declarados y luego invocados.
+    - También puede darse una combinación de este método pero con **inicialización por defecto** de ciertos parámetros especificados.
+- **Método por nombre**: se ligan por el nombre, o sea, cuando se invoca la rutina, se debe especificar a qué parámetro corresponde el parámetro real que le estamos dando. Deben conocerse los nombres de los formales, lo cual es poco práctico.
+
+ADA soporta todos los tipos de ligaduras.
+
+Los parámetros pueden ser **datos** o **subprogramas**, aunque depende de cada lenguaje:
+
+### Datos como parámetros
+
+Hay distintas formas de transmitir los parámetros hacia y desde la rutina llamada:
+
+- **IN**: el parámetro formal *recibe* el dato *desde* el parámetro real. La conexión sucede al inicio, cuando el real se copia, y luego, se **corta** la vinculación.
+    - **Por valor**: el parámetro formal actúa como una **variable local** de la unidad llamada, creando otra variable. Consume **tiempo** al hacer la copia de cada parámetro y **almacenamiento** para guardar a la variable. Suele ser el default.
+    - **Por constante**: no todos los lenguajes lo soportan. Se envía un valor, pero *la rutina receptora no puede modificarlo*, **queda con ese valor fijo**. Dependiendo del lenguaje, se hace o no la copia. Su implementación debe contemplar que el parámetro real no sea modificado.
+- **OUT**: se invoca la rutina y cuando ésta termina, devuelve el parámetro formal al parámetro real. La conexión sería al **final**.
+    - **Por resultado**: el valor del parámetro formal *se copia* al parámetro real al terminar de ejecutarse la unidad llamada. El parámetro formal es una variable local del entorno de la rutina. Consume **tiempo** y **espacio** porque hace una copia al final.
+    - **Por resultado de funciones**: el resultado es devuelto por una función. Se reemplaza en la invocación de la expresión que contiene el llamado.
+- **IN/OUT**: El parámetro formal *recibe* el dato del parámetro real y el formal le *envía* el dato al real al finalizar la subrutina. La conexión es al **inicio** y al **final**.
+    - **Por valor-resultado**: la rutina trabaja sobre el parámetro formal *copiado* del real pero no afecta a éste último, ya que está copiado. Cada referencia al parámetro formal es una **referencia local**. Una vez termina la rutina, el parámetro formal le devuelve un valor al parámetro real y se genera una copia.
+    - **Por referencia**: no es copia por valor, es copia por referencia a una posición. Se asocia el l-valor (dirección) del parámetro real al formal. La conexión es al inicio y **permanece hasta el final**. El parámetro formal será una **variable local a su entorno** pero que *contiene la dirección al real* que estará en un ambiente no local. Cada referencia al parámetro formal será en un ambiente no local, entonces **los cambios se verán registrados en el real automáticamente**. El gran problema es que *se puede llegar a modificar el parámetro real inadvertidamente*. El acceso al dato es más lento, ante la ***indirección***.
+    - **Por nombre**: ningún lenguaje imperativo lo usa hoy en día. El parámetro formal es sustituido *textualmente* por una expresión del parámetro real, más un puntero al entorno del parámetro real (expresión textual, entorno real). Se utiliza una estructura aparte que resuelve esto. Se establece la ligadura entre parámetro formal y parámetro real en el momento de la invocación, pero la "ligadura de valor" se difiere hasta el momento en que se lo utiliza (la dirección se resuelve en ejecución). Distinto semánticamente a por referencia. Para implementar este modo se usan Thunks:
+        - Unidad pequeña de código (función) que encapsula y representa a una expresión que pospone su evaluación hasta que sea necesario.
+        - **Cada aparición del parámetro formal se reemplaza** en el cuerpo de la unidad llamada por una invocación a un thunks, en el momento de la ejecución activará al procedimiento que evaluará el parámetro real en el ambiente apropiado.
+
+### Subprogramas como parámetros
+
+Hay situaciones en que es conveniente o necesario poder usar nombres de subprogramas como parámetro para ejecutar alguna acción. En general, es implementado con funciones matemáticas.
+
+Pueden ser, tanto rutinas que *reciben funciones* como parámetros, o rutinas que *devuelven funciones* como resultado (**mecanismo fundamental en lenguajes funcionales**).
+
+- Algunas cosas pueden ser confusas de resolver (chequeo de tipos de subprogramas, subprogramas anidados, etc.).
+
+Para resolver el ambiente de referencia para las referencias no locales dentro del cuerpo del subprograma pasado como parámetro hay diversas opciones que se implementan si se utiliza cadena dinámica:
+
+- **Ligadura superficial/shallow**: el ambiente de referencia es el del subprograma que tiene declarado el parámetro formal del subprograma.
+- **Ligadura profunda/deep**: el ambiente es el del subprograma donde está declarado el subprograma utilizado como parámetro real. Se utiliza en lenguajes con ***alcance estático*** y ***estructura de bloque***.
+- **Ligadura ad hoc**: el ambiente es el del entorno donde se pasa la función como parámetro.
+
+| Tipo de ligadura | ¿Cuándo se resuelven las referencias libres? | ¿Qué entorno se usa? |
+| --- | --- | --- |
+| **Profunda** | En el momento del **pasaje como parámetro** | El del **definidor** |
+| **Superficial** | En el momento de **la llamada al parámetro** | El del **llamador** |
+| **Ad hoc** | En tiempo de compilación; **se restringe** | El **global** (solo lo permitido) |
+
+**Pascal** permite que la referencia a un procedimiento sea pasada a un subprograma, **C** permite punteros a funciones pero no permite funciones anidadas y **ADA** no contempla subprogramas como valores, utiliza unidades genéricas.
+
+### Pasajes de parámetros en algunos lenguajes
+
+- **C**: por valor (si se necesitan por referencia, se usan punteros), permite pasaje por valor constante (agregando `const`).
+- **Pascal**: por valor (por defecto) o por referencia (agregando `var`).
+- **C++**: similar a C, más pasaje por referencia.
+- **Java**: sólo copia de valor. Pero como las variables de tipos no primitivos son todas referencias a variables anónimas de la heap, el paso por valor de una de estas variables constituye en realidad un paso por referencia.
+- **PHP**: por valor (por defecto) o por referencia (agregando `&`)
+- **Python**: envía objetos que pueden ser, tanto *mutables* como *inmutables*. Si es inmutable, actuará como por valor, y si es mutable, no se hace una copia, sino que se trabaja sobre sí.
+- **Ruby**: por valor, pero al igual que Python, si lo que se pasa es un objeto *mutable*, no se hace una copia, sino que se trabaja sobre él.
+- **ADA**: usa varios:
+    - Por copia modo **IN** (por defecto)
+    - Por resultado modo **OUT**
+    - **IN-OUT**
+    - Para los tipos de datos primitivos indica que es por **valor-resultado**
+    - Para los tipos no primitivos y datos compuestos, se hace **por referencia**
+    - En las funciones sólo se permite el paso por copia de valor, el cuál evita parcialmente la posibilidad de efectos colaterales.
+
+## Ejecución de rutinas
+
+La definición de la rutina especifica un *proceso de cómputo.* Cuando se invoca, se ejecuta una **instancia del proceso** con los particulares valores de los parámetros.
+
+La **instancia de la unidad** es la representación de la rutina *en ejecución*. Ésta contiene un ***segmento de código***, el cual contiene **instrucciones** de la unidad, que se almacena en la **memoria de instrucción (C)**, y es de contenido fijo. También contiene un **registro de activación**, el cual contiene **datos locales** de la unidad, que se almacena en la **memoria de datos (D)** y es de contenido cambiante.
+
+Se define un **procesador *abstracto* (Simplesem)**, el cual sirve para comprender qué efecto tienen las instrucciones al ser ejecutadas. La semántica es intuitiva, describida a través de reglas de cada constructor del lenguaje, traduciéndolo en una secuencia de instrucciones equivalentes del procesador abstracto.
+
+El Simplesem contiene:
+
+- **Memoria de código**: C(y), valor almacenado en la *y-ésima celda* de la memoria de código. Comienza en cero.
+- **Memoria de datos**: D(y), valor almacenado en la *y-ésima celda* de la memoria de datos. Comienza en cero y *representa el l-valor*, D(y) o C(y) su r-valor.
+- **Ip**: puntero a la instrucción que se está ejecutando. Se **inicializa en cero**, en cada ejecución se **actualiza** cuando se ejecuta cada instrucción. Contiene direcciones de C.
+
+La ejecución del Simplesem se desglosa en varios pasos:
+
+1. Obtener la instrucción actual para ser ejecutada (C[ip])
+2. Incrementar ip
+3. Ejecutar la instrucción actual
+
+### Instrucciones del Simplesem
+
+- **SET**: setea valores en la memoria de datos. 
+`set target, source`
+Copia el valor representado por ***source*** en la dirección representada por ***target***.
+- **Operaciones de E/S**: *read* y *write*.
+    
+    `set target, read` 
+    El valor leído se almacena en la dirección especificada ***target***.
+    
+    `set write, D[target]` 
+    
+    Se transfiere el valor almacenado a la posición especificada ***target***.
+    
+- **JUMP**: bifurcación incondicional a direcciones de C.
+`jump target`
+    
+    Se salta incondicionalmente a la dirección ***target***.
+    
+- **JUMPT**: bifurcación condicional, ante una expresión verdadera.
+    
+    `jumpt target, D[13] > D[41]` 
+    
+    Salta a la dirección ***target*** si el valor almacenado en la celda 13 es mayor al que está almacenado en la celda 41
+    
+
+### Elementos del Simplesem
+
+- **Punto de retorno**: es una pieza cambiante de información que debe ser salvada en el registro de activación de la unidad llamada.
+- **Ambiente de referencia**:
+    - **Local**: variables locales, ligadas a los objetos almacenados en su registro de activación.
+    - **No local**: variables no locales, ligadas a objetos almacenados en los registros de activación de *otras* unidades.
+
+# Estructura de ejecución en lenguajes de programación
+
+Los modelos de ejecución definen **cómo se administra la memoria y se ejecutan las funciones/procedimientos** en distintos lenguajes. Se suelen clasificar en tres grandes grupos:
+
+## Estático
+
+- **Características:**
+    - Toda la memoria necesaria se conoce **en compilación**.
+    - **No hay recursión.**
+    - Las direcciones de variables y rutinas se fijan **antes** de ejecutar el programa.
+    - Todo se asigna de forma **estática** (en tiempo de compilación).
+
+### **C1 – Programa Simple**
+
+- No hay funciones o bloques internos.
+- Solo datos locales del programa principal en el registro de activación.
+- La memoria para estos datos se fija de antemano.
+
+### **C2 – Rutinas sin Anidamiento**
+
+- El programa tiene funciones o procedimientos, pero **ninguno dentro de otro**.
+- Cada función tiene su propio **registro de activación (RA)** con:
+    - Sus variables locales.
+    - Su **punto de retorno**.
+- El compilador puede asignar direcciones a cada variable.
+- No se permite **recursión**: solo una instancia de cada rutina.
+
+### **C2’ – Módulos Separados**
+
+- Igual que C2, **pero el programa se compila en módulos separados**.
+- En tiempo de compilación **no se conocen**:
+    - Direcciones de funciones.
+    - Posiciones de variables.
+    - Saltos (como `JUMP` o `CALL`).
+- Se necesita un **Linkeditor** que:
+    - Une los módulos.
+    - Completa la información que falta.
+    - Ajusta direcciones para que el programa funcione correctamente.
+
+## Basado en pila
+
+- **Características:**
+    - Aún se conoce el tamaño de cada RA **en compilación**, pero **no cuántas instancias habrá** (por la recursión).
+    - Se usa una **pila (stack)** para manejar los registros de activación.
+    - Las variables se asignan al entrar a la función y se liberan al salir.
+
+### **C3 – Rutinas Recursivas y Valores de Retorno**
+
+- Como C2, pero **permite recursión** y **valores de retorno**.
+- Cada llamada crea un nuevo **RA** en la pila.
+- Cada RA será de **tamaño fijo y conocido**, pero no se sabrá cuántas instancias de cada unidad se necesitarán durante la ejecución.
+- Cada RA contiene:
+    - Variables locales.
+    - Punto de retorno.
+    - **Link dinámico** (a la RA de quien llamó).
+    - **Valor de retorno** (no deben perderse, por eso se apilan).
+- Se introducen:
+    - `current`: apunta al RA actual.
+    - `free`: próxima dirección libre en la pila.
+    - **Cadena dinámica**: secuencia de links dinámicos (quién llamó a quién en tiempo de ejecución).
+    
+    Estos son necesarios, ya que cuando una rutina termina su ejecución, su RA no se necesitaría más, y **debe liberarse el espacio** para los RA restantes.
+    
+
+### **C4 – Estructura de Bloques**
+
+- Se permite declarar variables en **bloques internos** (por ejemplo, dentro de `if`, `while`, etc.).
+- Cada bloque puede tener **alcance distinto** para sus variables.
+- Bloques pueden estar:
+    - **Disjuntos**: no se contienen entre sí.
+    - **Anidados**: uno dentro del otro.
+
+### **C4’ – Sentencias Compuestas**
+
+- Un bloque puede contener **declaraciones locales** (por ejemplo, `begin...end` con variables dentro).
+- Las variables tienen **alcance local al bloque**.
+- Si se redeclara un nombre en un bloque interno, **enmascara** al externo (*lookup*).
+
+Dos formas de manejar estos bloques:
+
+1. **Estática**: el RA incluye espacio para **todas** las variables posibles (aunque no se usen).
+2. **Dinámica**: el RA se **extiende en ejecución** solo si se necesita.
+
+### **C4’’ – Rutinas Anidadas**
+
+- Permite definir rutinas **dentro de otras**.
+- Se introduce el **link estático**:
+    - Apunta al RA de la rutina que contiene **estáticamente** a la actual.
+    - Se necesita para poder localizar referencias no locales a la rutina.
+- La **cadena estática** permite resolver referencias a variables **no locales** pero **declaradas en niveles superiores**.
+
+## Dinámico
+
+- **Características:**
+    - No se puede predecir la memoria que se usará.
+    - Se usan estructuras **fuera de la pila**, como la ***heap***.
+    - El programador controla cuándo alocar y liberar memoria.
+
+### **C5’ – Variables Dinámicas con Tamaño Estático**
+
+- El tamaño del RA se conoce **al activarse la rutina**.
+- Por ejemplo, **arreglos dinámicos** donde el tamaño se calcula en tiempo de ejecución.
+- Se reserva espacio en el RA para **descriptores** (estructura con info sobre el arreglo).
+- Luego se reserva la memoria real para el arreglo.
+
+Pasos de la alocación del **RA**:
+
+1. Se aloca espacio para datos de tamaño fijo y descriptores.
+2. Se calculan las dimensiones.
+3. Se reserva memoria para el arreglo y se actualiza el descriptor.
+
+### **C5’’ – Alocación Dinámica (Heap)**
+
+- Datos se crean **explícitamente** con instrucciones como `new`, `malloc`, etc.
+- El tiempo de vida de estos datos depende de si **siguen siendo referenciados** (si hay punteros que los apuntan).
+- Se necesita manejo explícito o **recolección de basura (garbage collection)**.
+
+### **C6 – Tipado y Alcance Dinámico**
+
+- Lenguajes con **tipado dinámico** y **alcance dinámico**.
+- Por ejemplo, Lisp (en sus versiones más dinámicas).
+- Las **ligaduras** (vínculo entre nombre y dirección o tipo) se hacen **en ejecución**.
+- El programa decide en tiempo de ejecución qué tipo tiene una variable, o qué variable usar en una referencia.
+
+![image.png](attachment:3d8d96f8-e865-469e-9281-c076e9cf0795:image.png)
+
+# Tipos de datos
+
+Los lenguajes de programación organizan los datos a través del concepto de tipo. Es una forma de clasificar los datos de acuerdo con distintas categorías.
+
+Un tipo sería un **conjunto de valores** y **operaciones permitidas** que se pueden utilizar para *manipular* datos.
+
+![image.png](attachment:ab5caf40-c221-41f0-8cbb-ef540c0b825e:image.png)
+
+### Tipos predefinidos
+
+Los brinda el lenguaje. Refleja el comportamiento subyacente del hardware, son abstracciones de él. Tiene varias ventajas, como la ***invisibilidad** de la representación*, *verificación estática*, *operadores no ambiguos*, o el *control de precisión*.
+
+- Números
+    - Enteros
+    - Reales
+- Caracteres
+- Booleano
+
+Que un conjunto de valores de un tipo sea definido por la implementación del lenguaje
+significa que será seleccionado por el compilador, mientras que si el tipo es definido por el lenguaje será definido en su definición.
+
+## Tipos definidos por el usuario
+
+Los lenguajes de programación permiten al programador especificar agrupaciones de objetos de datos elementales y de forma **recursiva**, agregaciones de agregados. Esto se logra mediante ***constructores***.
+
+Separan la ***especificación*** de la ***implementación*** y se definen los tipos que el problema necesita.
+
+También permiten:
+
+- Instanciar objetos de las agregaciones
+- Definir nuevos tipos de dichas agregaciones
+- Chequeos de consistencia
+
+Tienen ventajas como la ***legibilidad*** (elección apropiada de nombres), ***factorización*** (uso cuantas veces sea necesario) y ***modificabilidad*** (sólo se cambia en la definición).
+
+### Constructores
+
+- **Producto Cartesiano**: el producto cartesiano de n conjuntos de tipos variados. Permite producir registros (***Pascal***) o struct (***C***).
+- **Correspondencia finita**: **función** de un conjunto finito de valores de un tipo de **dominio DT** (tipo del dominio, o sea, un tipo de variable) en valores de un tipo del **dominio RT** (resultado del dominio, acceso a través de un índice). Son las *listas*, *vectores*, *matrices*, etc.
+- **Unión y unión discriminada**: la unión/unión discriminada de dos o más tipos define un tipo como la disjunción de los tipos dados. Permite manipular diferentes tipos en distintos momentos de la ejecución. Hay un chequeo dinámico.  La declaración es muy similar a la del producto cartesiano. La diferencia es que sus campos son mutuamente excluyentes.
+- **Recursión**: un tipo de dato recursivo T se define como **una estructura que puede contener componentes de tipo T**. Define datos agrupados; cuyo tamaño puede crecer arbitrariamente y cuya estructura puede ser arbitrariamente compleja. Los lenguajes suelen implementar tipos de datos recursivos a través de punteros.
+
+## Punteros
+
+Los **punteros** son **estructuras de tamaño arbitrario** y de **número de ítems no determinado**: los punteros permiten conectar juntos muchos ítems sin tener un nombre explícito para todos ellos (recursión). Además, permiten que el dato sea puesto en varias estructuras sin necesidad de duplicarlo. Al tener un acceso a bajo nivel, los punteros están cerca de la máquina y pueden hacer inseguros a los programas.
+
+Pueden tomar como valores o una **dirección de memoria**, o un ***valor nulo*** (no asignado).
+
+Las operaciones permitidas son; de asignación de valor, que generalmente está asociado a la alocación de la variable apuntada, o de referencias, o sea, operaciones entre punteros al valor de la variable apuntada.
+
+Permiten definir estructuras recursivas.
+
+### Inseguridades en punteros
+
+- **Violación de tipos**: se puede operar con el valor al que apunta la variable sin chequear el tipo.
+- **Referencias sueltas/dangling**: es un puntero que contiene una dirección de una variable dinámica desalocada, por lo que luego si se usa el puntero se produce un error.
+- **Punteros no inicializados**: peligro de acceso descontrolado a posiciones de memoria, su solución es el valor especial nulo (*nil*, *null*, *void*).
+- **Punteros y uniones discriminadas**: puede permitir accesos a cosas indebidas. Java elimina la noción de puntero explícito directamente.
+- **Alias**: si 2 o más punteros comparten alias, la modificación que haga uno también se verá reflejado en los demás.
+- **Liberación de memoria (objetos perdidos)**: si los objetos en la heap dejan de ser accesibles, esa memoria podría liberarse. Un objeto es accesible si alguna variable en la pila lo apunta, directa o indirectamente. Es basura si no es accesible.
+
+## Manejo de memoria
+
+![image.png](attachment:723e88c2-d9e1-482d-9a79-3f23c3e11497:image.png)
+
+Puede ser:
+
+- **Explícita**: el reconocimiento de lo que es basura o no, recae en el programador. No garantiza que no haya otro puntero que apunte a esa dirección. Se pueden generar referencias sueltas.
+- **Implícita**: el sistema durante la ejecución tomará la decisión de descubrir la basura por medio de un ***garbage collector***, un algoritmo de recolección de basura. Se utiliza más que nada en lenguajes que usan variables dinámicas. Se ejecuta durante el procesamiento de las aplicaciones.
+
+## Tipo de dato abstracto (TAD)
+
+![image.png](attachment:f81f7b60-86d4-44e6-a9ba-3f0ca37ac651:image.png)
+
+Un **Tipo Abstracto de Datos (TAD)** es una **abstracción matemática** que define:
+
+- **Qué datos representa**, y
+- **Qué operaciones se pueden realizar sobre esos datos**, sin especificar cómo se implementan.
+
+**No dice si se implementa con arrays, listas enlazadas, etc.** Eso es la implementación concreta, no el TAD.
+
+- **Separan la especificación del comportamiento de la implementación concreta**.
+- **Facilitan la modularidad y el diseño de programas más abstractos y reutilizables**.
+- **Satisface el encapsulamiento.**
+
+### Contrato de un TAD
+
+Un TAD se puede definir mediante un contrato:
+
+- **Operaciones disponibles**
+- **Precondiciones / postcondiciones**
+- **Invariante de representación**: propiedades que deben cumplirse siempre en la implementación interna (por ejemplo, que `0 ≤ top ≤ 100`).
+
+## Sistema de tipos
+
+Un sistema de tipos es un **conjunto de reglas** que permite:
+
+- Clasificar las expresiones según el tipo de valores que manipulan,
+- Prevenir errores como sumar un entero con una cadena de texto.
+
+Los hay:
+
+- **Estático**: Los tipos se determinan en tiempo de compilación. Ej: Pascal, C, Java.
+- **Dinámico**: Se verifican en tiempo de ejecución. Ej: Python, JavaScript.
+- **Fuerte**: No se permite mezclar tipos sin conversión explícita.
+- **Débil**: El lenguaje hace conversiones implícitas peligrosas (como sumar string + int).
+
+Los tipos se verifican mediante reglas de tipado.
+
+Estas reglas se usan en un **analizador semántico** del compilador para:
+
+- Verificar que el programa sea válido,
+- Inferir tipos si el lenguaje lo permite (como Haskell o ML).
+
+# Índice de Deepseek
+
+### **1. Unidades o Rutinas**
+
+- **Definición**: Acciones abstractas que componen un programa, llamadas *rutinas* (procedimientos o funciones).
+    - **Procedimiento**: Conjunto de sentencias con nombre que resuelve un subproblema. No retorna valor.
+    - **Función**: Procedimiento que siempre retorna un valor y se usa en expresiones.
+- **Atributos de rutinas**:
+    - **Nombre**, **alcance** (estático/dinámico), **tipo** (signatura), **L-valor** (dirección en memoria), **R-valor** (ejecución del código).
+- **Comunicación entre rutinas**:
+    - **Ambiente no local** (variables globales) o **parámetros** (más seguro y legible).
+    - **Parámetros formales** (definición) vs. **reales** (invocación).
+- **Pasaje de parámetros**:
+    - **IN**: Por valor (copia) o por constante (no modificable).
+    - **OUT**: Por resultado (copia al finalizar).
+    - **IN/OUT**: Por valor-resultado (copia al inicio y fin) o por referencia (trabaja sobre la dirección original).
+- **Subprogramas como parámetros**:
+    - Permiten pasar funciones como argumentos.
+    - **Ligadura**:
+        - **Profunda** (usa entorno del definidor).
+        - **Superficial** (usa entorno del llamador).
+        - **Ad hoc** (entorno global).
+
+---
+
+### **2. Estructura de Ejecución**
+
+Modelos para administrar memoria y ejecución:
+
+1. **Modelo Estático**:
+    - Memoria fija en compilación.
+    - Sin recursión (ej: FORTRAN).
+2. **Modelo Basado en Pila**:
+    - Usa **pila (stack)** para registros de activación (RA).
+    - Permite recursión.
+    - **RA contiene**: Variables locales, punto de retorno, link dinámico (quién lo llamó).
+    - **C4’**: Rutinas anidadas con **link estático** (acceso a variables no locales).
+3. **Modelo Dinámico**:
+    - Memoria en **heap** (ej: **`malloc`** en C).
+    - Gestión manual o con *recolección de basura* (ej: Java, Python).
+
+---
+
+### **3. Tipos de Datos**
+
+- **Tipos predefinidos**: Enteros, reales, booleanos, caracteres.
+- **Tipos definidos por el usuario**:
+    - **Constructores**:
+        - **Producto cartesiano**: Estructuras/registros (ej: **`struct`** en C).
+        - **Correspondencia finita**: Arrays/listas.
+        - **Unión discriminada**: Tipos mutuamente excluyentes (ej: **`enum`**).
+        - **Recursión**: Estructuras autoreferenciadas (ej: listas enlazadas).
+- **Punteros**:
+    - Almacenan direcciones de memoria.
+    - Riesgos: *Dangling references*, alias, fugas de memoria.
+- **Tipo Abstracto de Datos (TAD)**:
+    - Define **qué hace** (operaciones) sin especificar **cómo**.
+    - Ejemplo: Pila con operaciones **`push`**/**`pop`**.
+- **Sistema de Tipos**:
+    - **Estático** (en compilación, ej: C) vs. **Dinámico** (en ejecución, ej: Python).
+    - **Fuerte** (no permite mezclar tipos) vs. **Débil** (conversiones implícitas).
+
+---
+
+### **Conclusión**
+
+- Las **rutinas** organizan la lógica del programa.
+- La **estructura de ejecución** determina cómo se gestiona la memoria (pila/heap).
+- Los **tipos de datos** permiten modelar información de forma segura y abstracta.
+
+```pascal
+a[x] = f(x);
+```

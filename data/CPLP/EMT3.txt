@@ -1,0 +1,467 @@
+# Estructuras de control
+
+Los lenguajes de programación convencionales permiten *estructurar* el código en relación al **flujo de control** entre los diferentes **componentes** de un programa a través de sus **estructuras de control**.
+
+## Estructuras de control a nivel de unidad
+
+Cuando el flujo de control se pasa entre **unidades** (rutinas) también es necesario estructurar el *flujo* entre ellas.
+
+Las **formas de control** pueden ser:
+
+- Pasajes de parámetros
+- Call-return
+- Excepciones
+- etc.
+
+## Estructuras de control a nivel de sentencia
+
+## **Secuencia**
+
+Permiten ejecutar una serie de instrucciones en un ***orden* específico**, sin ningún tipo de desviación. Su delimitador más usado es el “*;”*, aunque hay lenguajes que no lo usan. También hay se suelen limitar las líneas (sólo puede haber **una** o pueden haber **varias**) y posibilidad de uso de **bloques de instrucciones**.
+
+En la secuencia pueden haber varios tipos de sentencias:
+
+- **Compuestas**: las cuales no están permitidas en todos los lenguajes y se usan para agrupar varias sentencias en una con el uso de delimitadores (si aplica). Dependiendo de las reglas de cada lenguaje, *begin-end*, *{}*.
+- **Asignación**: producen cambios en los datos de la memoria (*asigna el l-valor a un r-valor*). En C, se pueden hacer ***asignaciones múltiples***. La mayoría de lenguajes requieren que sobre el lado izquierdo aparezca un *l-valor* y nunca un *r-valor* (por eso el nombre), un ejemplo de esto es C.
+- **Expresión**: devuelve un **valor obtenido** como resultado de combinar otros valores a través de ***operadores***.
+
+### **Iteración (bucle)**
+
+Permiten repetir un bloque de código ***múltiples* veces** hasta que se cumpla una condición de salida, *for*, *while*, *repeat until*.
+
+El bucle for conooce el número de repeticiones al inicio del bucle.
+
+- **FORTRAN** tiene una sentencia `do`para implementar el for loop. `Do label var_control = valorIni, valorFin label continue` . La `var_control` sólo puede tomar valores enteros y se incrementa en cada secuencia. La declaración `continue` junto con la etiqueta `label` se usa como última declaración de la sentencia. La variable de control no debe ser modificada por sentencias dentro del ciclo.
+- **Pascal**, **Ada**, **C** y **C++** lo implementan como `for var_loop := lower to upper do statement`. La variable de control puede tomar cualquier valor ordinal de secuencia. **Pascal** no permite que se modifiquen los límites ni la variable de control. **Ada** encierra el proceso iterativo con `loop` y `end loop`. Permite el uso de `Exit` para salir de cada *loop*. La variable de control no se necesita declarar. Se pude incrementar o decrementar `in` o `in reverse`. C y C++ tienen una inicialización y 2 expresiones:
+    
+    ![image.png](attachment:89382608-a6aa-4356-8704-a12a61e59fab:image.png)
+    
+    En **C++** si se declara una variable dentro del for, su alcance se extiende hasta el final del bloque. Si se omiten una o ambas expresiones en un bucle for se puede crear un bucle sin fin, del que solo se puede salir con una instrucción `break` , `goto` o `return` .
+    
+- **Python** tiene 2 tipos: una para iterar sobre secuencias de estructuras de datos, y otra para iterar sobre un rango de valores, con la función `range()`. Finaliza su ejecución una vez recorre todos los elementos del iterable o el rango.
+
+El *while loop* es una estructura que se repite un proceso mientras se cumpla una condición (que se evalúa antes de entrar al proceso).
+
+El *repeat-until* o *do-while* son estructuras que permiten repetir un proceso hasta que se cumpla una condición. La condición se evalúa al final del proceso.
+
+![image.png](attachment:63ed8914-034c-423d-9728-163417d1d277:image.png)
+
+*Repeat-until en ADA.*
+
+### **Selección (decisión)**
+
+Permiten **tomar *decisiones*** basadas en ciertas condiciones. Dirigen el flujo de control hacia diferentes caminos según el resultado de la evaluación, *if-else*, *switch-case*.
+
+Es **semánticamente** similar en casi todos los lenguajes, aunque en cuanto a **sintaxis** suele variar.
+
+En FORTRAN, sólo podía haber un *if*, con una condición, y una sentencia que le siguiera.
+
+En ALGOL, ya existía una condición *if-else* con 2 sentencias posibles. Tenia ambigüedad en torno a **cómo se asociaban** los *else* con los *if* abiertos.
+
+C y Pascal solucionaron éste último problema por medio de una regla que establecía que cada *else* se empareje con la **instrucción *if* solitaria más próxima**, buscando de derecha a izquierda. De igual manera, presenta problemas para la legibilidad y claridad del código, sobre todo si el código no tenía ***identaciones***.
+
+Otra regla común era usar sentencis de cierre explícitas del bloque condicional *if*, como *fi*, *endif*, o sólo *end*.
+
+No todos los lenguajes soportan sentencias compuestas, con *if anidados*.
+
+- **Operador condicional ternario**: C y Java soportan un operador condicional, el cual tiene la estructura  `cond ? b : c` en el cual *cond* es una expresión booleana, y *b* y c **pueden ser expresiones o sentencias. Si el valor de *cond* es **verdadero**, se devuelve **b**, si no, **c**.
+- **else-if/elif**: se incorpora cuando hay más de 2 opciones. Python lo implementa con identaciones y un *“:”* luego de su condición para indicar un bloque.
+- **Exrpresión condicional corta (Python)**: `[on_true] if [expresión] else [on_false]`
+
+La evaluación de las expresiones en los lenguajes puede ser de dos tipos, usando operadores *AND* y *OR*:
+
+- **Circuito corto**: los operandos de una expresión lógica se evalúan de izquierda a derecha, pero sólo hasta encontrar el primero que determina el resultado final, sin evaluar los posteriores. En un *AND*, si el primer término es **falso**, no se evalúa el segundo. En un *OR*, si el primer término es **verdadero**, no se evalúa el segundo. Lo implementan C, C++, Java, JavaScript, Ruby, Go, Rust, Kotlin, etc.
+- **Circuito largo**: todos los operandos se evalúan, sin importar si el primero ya determina el resultado final.
+
+Los lenguajes tienen sus propias formas de implementar la evaluacion de condiciones múltiples:
+
+- **Pascal** tiene el `case var_ordinal of valor1: sentencia1; else sentencia2; end;` No importa el orden de los casos, y en el caso de que no se coincidan con las sentencias de la lista, esá el bloque else, el cual es ***opcional***, y hace este uso del case **inseguro**. El programador debe ocuparse de considerar todas las opciones.
+- **Ada** lo implementa como `case expresion is when var => sentencia1; when others => sentencia2; end case;` Si el case no contempla todos los valores del compilador, éste tira error. Las expresiones solo pueden ser enteros o enumerativos. Para representar los valores que no se especificaron explícitamente, se usa el `when others` y debe ser la última opción siempre.
+- **C** y **C++** usan  `switch (expresion) { case 1: sentencia1; break; default: sentencia2; break; }` El break y default son opcionales, en caso de que el valor no coincida con ninguna de las opciones establecidas. El orden no tiene importancia. El control de flujo pasa de un case a otro consecutivo cuando se **omite** el break después de un case (*falling through*), es decir, continúa su ejecución luego de haber encontrado un valor. Esto puede generar **comportamientos indefinidos**. Es buena práctica siempre tener en cuenta usar un `break`.
+- **Ruby** hace `case param when 1 do_something() else handle_error() end` . Se busca la expresión en los bloques when hasta que coincida con la condición, y ejecuta ese bloque de código. Si no coincide con ninguna, ejecuta el `else` , el cual es opcional.
+- **PL/I** tiene algo parecido a SQL, `SELECT (identifier) WHEN (value1) statement; OTHERWISE statement; END;` o `SELECT WHEN (cond1) statement; OTHERWISE statement; END;`
+
+# Excepciones
+
+Los errores que puede tener un programa son atendidos por mecanismos del lenguaje (excepciones), mecanismos del hardware (interrupciones) o mecanismos del SO (señales).
+
+Una ***excepción*** es una **condición inesperada** que ocurre durante la ejecución del programa y que no puede ser manejada en el contexto local. Es necesario controlarlo. Interrumpe el **flujo normal** de ejecución y ejecuta un ***controlador de excepciones*** registrado previamente.
+
+Para que un lenguaje implemente excepciones, debe proveer:
+
+- **Definición**
+- **Reconocimiento**
+- **Lanzamiento y captura**
+- **Manejo**
+- **Levantamiento**
+
+Hay dos tipos de excepciones:
+
+- **Implícitas**: definidas por el lenguaje
+- **Explícitas**: definidas por el programador
+
+Después de atender a una excepción, el punto de retorno dependerá del flujo de ejecución del programa y de cómo se haya diseñado el manejo de excepciones en el código.
+
+Hay distintos casos:
+
+- **Continuar la ejecución normal del programa**: después de manejar una excepción el programa continúa su ejecución. Al punto de retorno lo define el lenguaje.
+- **Retornar a un estado anterior**: el manejo de excepciones puede requerir que el programa regrese a un estado anterior o deshaga acciones realizadas antes de la producción de la excepción.
+- **Propagar la excepción**: como el controlador no puede manejar la excepción completamente, se propaga a un nivel superior. El punto de retono sería el controlador de excepciones en el nivel superior que puede manejar la excepción.
+- **Terminar la ejecución del programa**: el controlador de excepciones determina que no se puede continuar con el programa de manera segura. El punto de retorno puede ser la finalización del programa o alguna acción específica de cierre.
+
+## Manejador de excepciones
+
+Es una sección del código que se encarga de **manejar una excepción** en un programa. Su objetivo principal es proporcionar una forma de recuperarse ante un error o falla, permitiendo que el programa continúe ejecutándose en lugar de *detenerse* *abruptamente*.
+
+Puede tomar distintas **acciones** según la situación (imprimir un mensaje de error, realizar correcciones, lanzar otra excepción, finalizar la ejecución, etc.). Siempre debe ser la solución menos perjudicial.
+
+Existen 2 modelos del manejo de excepciones:
+
+### Reasunción y excepciones en PL/1
+
+Se prefiere la posibilidad de **retomar la ejecución normal después de manejar una excepción**. El controlador maneja la excepción y luego el programa continúa su ejecución a partir del punto donde se produjo la excepción. *Maneja y continúa*.
+
+Lo usa PL/1, que fue el primer lenguaje en incorporar el manejo de excepciones. Las excepciones se llaman `CONDITION`. Se declaran con la sentencia `ON CONDITION EXCEPCION Manejador` Pueden ser instrucciones o bloques dentro del manejador. Las excepciones se lanzan explícitamente con la palabra clave `SIGNAL`: `SIGNAL CONDITION EXCEPCION`.
+
+PL/1 tiene **excepciones ya predefinidas** con su manejador asociado. Los manejadores se *ligan dinámicamente* con las excepciones. Una excepción siempre estará ligada con el último manejador definido (por una pila). El alcance de un manejador termina cuando finaliza la ejecución de la unidad donde fue declarado.
+
+![image.png](attachment:0d388fff-c576-414d-a67f-d4afc7f31c8d:image.png)
+
+### Terminación
+
+El controlador maneja la excepción, pero **no se retoma al punto donde se invocó la excepción**. Continúa su ejecución a partir de la finalización del manejador. *Termina y maneja*.
+
+Lo usan ADA, CLU, C++, Java, Python, PHP, etc.
+
+## Excepciones en ADA
+
+El tipo de criterio de manejo de eexcepciones es de ***terminación***, es decir, cada vez que se produce una excepción, se termina el bloque donde se levantó y **se ejecuta el manejador asociado**, luego continuando.
+
+Las excepciones se definen en la zona de definición de variables y **tienen el mismo alcance** en la unidad. Se declaran como: `MiExcepcion: exception` 
+
+La lista de controladores de excepciones lleva la palabra clave `exception`. Cada controlador lleva la palabra clave `when` seguido de las acciones. Se puede usar `when others` para capturar cualquier excepción no especificada, y **debe ser colocada al final del bloque** de manejo de excepciones. Se levantan *explícitamente* usando `raise`. Los manejadores pueden agregarse y encontrarse al final de diferentes unidades de programa.
+
+También tiene **excepciones predefinidas**:
+
+- **Constraint_Error**: cuando se intenta violar una **restricción** impuesta en una declaración, es decir, salirse de los rangos de una estructura.
+- **Program_Error**: cuando se intenta violar la estructura de control o **regla** del lenguaje.
+- **Storage_Error**: cuando se produce una violación de memoria, o sea que se ocupa más memoria de la disponible.
+- **Tasking_Error**: cuando hay errores en la comunicación y manejo de tareas del sistema. Se da normalmente ante concurrencia.
+- **Name_Error**: cuando hay errores de nombres (se abre un fichero que no existe)
+
+Si la unidad que genera la excepción no proporciona un manejador, entonces se debe buscar **dinámicamente**.
+
+1. Se **termina** la unidad donde se produce la excepción.
+2. Si el manejador no se encuentra en ese lugar, la excepción se **propaga dinámicamente** (va a buscar quién lo llamó), o sea que se vuelve a levantar en otro ámbito.
+3. Puede convertirse en ***anónima***. Al propagarse a otras unidades, la variable excepción declarada ya **no está en el alcance** y quedará sin nombre y entrará por `when others`.
+
+Con la palabra clave `raise` se levantan excepciones definidas por el programador. Esto se puede hacer para permitir que se propague más arriba en la jerarquía de manejo de excepciones.
+
+La asociación de la excepción con el manejador es ***determinístico***, es decir se les asigna el mismo nombre a ambos. Si se deseara continuar ejecutando las instrucciones de un bloque donde se lanza una excepción, se necesita **crear un bloque más interno**, con el uso de `Declare` y se agregan instrucciones restantes abajo.
+
+## Excepciones en C++
+
+Se utiliza el criterio de terminación y cuenta con excepciones estándar predefinidas.
+
+Con el `Try` se indican los bloques donde pueden llegar a levantarse excepciones. Con `Catch(NombreExcepcion)` se especifican los manejadores. Deben estar después del bloque `Try` y antes de cualquier código que esté fuera de éste último. Con `Throw` se levanta explícitamente una excepción. Normalmente van dentro del bloque `Try`.
+
+![image.png](attachment:6fe02a32-57fe-4e8f-a090-7e93967414af:image.png)
+
+*Excepciones predefinidas en C++.*
+
+- En el bloque `Try` hay código que puede lanzar una excepción.
+- Si se lanza una excepción, el control se transifiere al `Catch`.
+- Si la excepción coincide con el tipo especificado en el `Catch`, se ejecuta el bloque de código.
+- Si la excepción se maneja exitosamente, la ejecución continúa luego de la ejecución del `Catch`.
+- Si no se encuentra un `Catch` o no se maneja la excepción, se puede propagarse hacia bloques `Try-Catch` externos.
+- Incluso puede resultar en una finalización abrupta del programa.
+
+Se pueden pasar parámetros al levantar una excepción (`throw MiExcepcion(param1, paramN);`). Esto permite que el programador especifique la **intención** de una rutina, al especificar comportamiento normal esperado y anormales pasándole parámetros al levantamiento.
+
+- Si en una rutina se **lanzó una excepción que no está contemplada** en el listado de la interface, no se propaga y se usa una función especial `unexpected()` (que puede ser definida por el programador), que eventualmente causa `abort()`, lo cual provoca el final del programa.
+- Si en la rutina sí colocó en su interface el **listado de posibles excepciones a alcanzar**, se propaga la excepción. Si una excepción se propaga repetidamente y nunca se encuentra un manejador, se llama automáticamente a `terminate()`, la cual puede ser redefinida por el programador, y que predeterminadamente *aborta* la ejecución del programa.
+- Si la rutina no proporciona ninguna lista, cualquier excepción puede ser propagada.
+- Si se colocó en la interface de la rutina una lista vacía `throw()`, ninguna excepción será propagada.
+
+## Excepciones en CLU
+
+Se utiliza el criterio de terminación. Las excepciones sólo pueden ser lanzadas por **procedimientos**. Si una instrucción genera una excepción, el procedimiento que contiene la instrucción retorna anormalmente al generar la excepción.
+
+- **Declaración de excepciones**: Un procedimiento debe declarar las excepciones que **puede lanzar** usando `signals`: `Procedure nombre() signals error1, error2`
+- **Lanzamiento de una excepción**: Se lanza con la palabra clave `signal`: `if x = 0 then signal error1;`
+- **Manejo**: Se usa la estructura `instruccion except when nombreExcepcion: manejador1; when others: manejadorDefault; end;`. El `when` **se asocia a una sentencia** (o bloque) y actúa si alguna instrucción dentro del bloque lanza la excepción.
+
+### Resignal y propagación
+
+- `resignal` permite **relanzar** una excepción desde un manejador.
+- Si no se encuentra un manejador:
+    - Se **propaga** hacia arriba: al procedimiento que llamó al que falló.
+    - Sigue subiendo hasta que alguien **la maneje**.
+    - Si nadie la maneja, se lanza `failure` y se termina el programa.
+
+## Excepciones en Java
+
+Las excepciones son objetos, instancias de clases que se heredan de *java.lang.Throwable*. Hay dos subclases importantes: `Exception`, para errores que pueden ser capturados y recuperados y `Error`, para errores graves (como problemas del sistema), que no se deben manejar en general.
+
+| `throw` | Lanza una excepción manualmente. |
+| --- | --- |
+| `try` | Delimita un bloque que **puede lanzar una excepción**. |
+| `catch` | Atrapa y maneja una excepción lanzada en el `try`. |
+| `throws` | Declara en la firma del método qué excepciones **puede lanzar**. |
+| `finally` | Define un bloque de código que **siempre se ejecuta**, ocurra o no una excepción. |
+- **Se puede tener múltiples `catch`**, y se ejecuta solo el primero que coincida con el tipo de excepción.
+- **El orden importa**: las clases más específicas deben ir antes que las generales (`ArithmeticException` antes que `Exception`).
+
+### Propagación de excepciones
+
+Si un método **lanza una excepción** (por ejemplo, con `throw` o por un error como división por cero), Java:
+
+1. Busca un `catch` correspondiente en el mismo método.
+2. Si no lo encuentra, la excepción **se propaga al método que llamó** al que falló.
+3. Si nadie la captura, el programa termina y se imprime un **stack trace**.
+
+## Excepciones en Python
+
+```python
+while True:
+    try:
+        x = int(input("Por favor ingrese un número: "))
+        break
+    except ValueError:
+        print("Oops! No era válido. Intente nuevamente...")
+```
+
+- El código dentro de `try` se ejecuta.
+- Si **no ocurre ningún error**, se salta el bloque `except`.
+- Si ocurre una **excepción**, se busca un bloque `except` que **coincida** con el tipo de error.
+- Si no se encuentra dentro de ese `try`, se **busca hacia afuera** (búsqueda estática → dinámica).
+- Si no se encuentra manejador, se **detiene el programa** con un error.
+
+## Excepciones en PHP
+
+```php
+try {
+    // código que puede lanzar una excepción
+} catch (ExceptionType $e) {
+    // manejar excepción
+} finally {
+    // código que siempre se ejecuta
+}
+```
+
+1. Si en `try` se lanza una excepción con `throw`, **salta inmediatamente** al bloque `catch` correspondiente.
+2. Si no hay ningún `catch` compatible → **Error fatal**: "Uncaught Exception".
+3. Se puede usar `finally` para ejecutar algo sin importar si hubo error o no.
+4. Se pueden **relanzar** excepciones desde un `catch` con `throw`.
+
+- La excepción **debe ser un objeto** de la clase `Exception` o una subclase.
+- Si se lanza algo que no es una excepción → **Error fatal**.
+
+# Paradigmas de los lenguajes
+
+Un paradigma es un **estilo de desarrollo de programas**, un modelo para *resolver problemas*. Los lenguajes pueden encuadrarse en uno o varios a la vez, a partir del tipo de órdenes que permiten implementar y su sintaxis.
+
+Se pueden clasificar por cómo son sus programas, y hay dos formas:
+
+- **Dirigido por eventos**: el flujo del programa se determina por sucesos externos (acciones del usuario).
+- **Orientado a aspectos**: se divide el programa en módulos independientes, cada uno con un comportamiento y responsabilidad bien definida.
+
+Pero popularmente se hace otra categorización:
+
+## Imperativo
+
+Los programas son con sentencias y secuencias de comandos.
+
+## Declarativo
+
+Los programas describen los resultados esperados sin listar explícitamente los pasos para alcanzarlos.
+
+### Lógico
+
+Está dentro del paradigma de la programación declarativa. Los programas son una serie de ***aserciones* lógicas**. El conocimiento se representa a través de ***reglas*** y ***hechos***. Los objetos son representados por ***términos***, los cuales contienen constantes y variables. Un ejemplo de esto es el lenguaje **PROLOG**.
+
+- **Constantes**: elementos conocidos como `juan`, `auto`, `5`
+    - Se escriben en minúsculas o números. Ej: `humano(juan)`
+- **Variables**: elementos desconocidos.
+    - Empiezan con mayúscula. Ej: `humano(X)` (X puede ser cualquier cosa)
+- **Términos compuestos**: combinan constantes/variables con un "functor".
+    - Ejemplo: `padre(juan, X)`, donde `padre` es el functor.
+    - La cantidad de elementos entre paréntesis se llama **aridad**
+
+En Prolog, las listas se escriben así:
+
+- Lista vacía: `[]`
+- Un solo elemento: `[alpha]` o `.(alpha, [])`
+- General: `[Cabeza | Cola]`, por ejemplo: `[X | Y]`
+
+Las **Cláusulas de Horn** son las **unidades de código** en Prolog. Pueden ser:
+
+- Hechos: Representan **verdades absolutas**. Ej:
+
+```prolog
+tiene(coche, ruedas).
+longitud([], 0).
+```
+
+- Reglas: Son **condicionales**
+
+```prolog
+longitud([X|Y], N) :- longitud(Y, M), N is M + 1.
+```
+
+Significa: *la longitud de una lista con cabeza X y cola Y es N si la longitud de Y es M y N = M + 1*.
+
+`:-` significa “si”.
+
+Una ***Query*** es una pregunta que se le hace al programa. Ejemplo:
+
+```prolog
+?- longitud([rojo, verde, azul], X).
+```
+
+Esto le pregunta al sistema: *¿cuál es la longitud de esta lista?*
+
+El sistema responde aplicando **deducción lógica**, como si fuera una cadena de reglas de inferencia.
+
+- Ejecución de programas: Se trata de **ver si una query puede derivarse** a partir de hechos y reglas
+
+```prolog
+rel(a,b).
+rel(a,c).
+rel(b,f).
+rel(f,g).
+clos(X,Y) :- rel(X,Y).
+clos(X,Y) :- rel(X,Z), clos(Z,Y).
+```
+
+- Query:
+
+```prolog
+?- clos(a,f).
+```
+
+Esto pregunta: *¿hay una relación transitiva entre `a` y `f`?*
+
+El sistema buscará si:
+
+1. `rel(a,f)` → **falla**
+2. `rel(a,b)`, luego `clos(b,f)`
+    
+    → ¿`rel(b,f)`? → **sí**
+    
+    Entonces: `clos(a,f)` se deriva → **YES**
+    
+
+Prolog **no ejecuta paso a paso como otros lenguajes**. En vez de eso, *resuelve* si algo es cierto *a partir de lo que se sabe*.
+
+### Funcional
+
+Es un **paradigma declarativo** donde lo principal no son los pasos para hacer algo, sino **las funciones que transforman datos**.
+
+- En vez de secuencias de instrucciones (como en C), **se usan funciones puras**, que siempre dan el mismo resultado para el mismo input y no cambian el estado del programa (no tienen efectos colaterales).
+- Tiene **funciones primitivas** (como suma, resta).
+- Permite **crear nuevas funciones** a partir de otras (composición).
+- Tiene **transparencia referencial**: si una expresión tiene cierto valor, siempre tendrá ese valor (como en matemáticas).
+- No hay **efectos colaterales**.
+- Las funciones son de **primer orden**: se pueden usar como cualquier otro valor.
+
+Las ventajas son:
+
+1. **Vista uniforme**: todo es función o resultado de una función.
+2. **Funciones como datos**: pueden pasarse como parámetros o devolverse como resultados.
+3. **Sin efectos colaterales**: las funciones no modifican nada fuera de sí mismas (no cambian variables globales).
+4. **Manejo automático de memoria**: suele tener *garbage collection* (colector de basura).
+
+La desventaja es que suele ser menos eficiente en ejecución.
+
+Una función transforma datos de un conjunto **A** a un conjunto **B**. El tipo de una función puede declararse explícitamente o ***inferirse* automáticamente**.
+
+- **Expresión**: es cualquier combinación de valores, variables o funciones.
+- **Una expresión siempre denota un valor** (aunque a veces puede no poder calcularse → valor indefinido).
+- La ***transparencia referencial*** significa que una función o expresión:
+    - Siempre da el mismo resultado con los mismos argumentos.
+    - No tiene efectos secundarios.
+    - No importa cuántas veces la invoques: siempre es igual.
+- **Valor indefinido**: Si no se puede reducir una expresión, se le asigna el símbolo **bottom (⊥)**, que significa "valor indefinido".
+
+### Orden normal (*Lazy Evaluation*)
+
+- No evalúa un argumento **hasta que es necesario**.
+- Si se llama muchas veces al mismo argumento, se evalúa **una sola vez** y se guarda.
+
+### Orden aplicativo (*Eager Evaluation*)
+
+- Evalúa **todos los argumentos antes** de ejecutar la función, incluso si algunos no se usan.
+
+## Haskell
+
+- Usa evaluación **perezosa (lazy)** por defecto.
+- Una vez que se calcula el valor de una función, lo guarda y reutiliza.
+- No evalúa más de lo necesario.
+
+| Funciones puras | No cambian nada fuera de sí mismas |
+| --- | --- |
+
+| Transparencia referencial | Misma entrada → mismo resultado siempre |
+| --- | --- |
+
+| Lazy evaluation | Evalúa solo lo necesario, una sola vez |
+| --- | --- |
+
+| Currificación | Transforma una función de n argumentos en n funciones de un argumento |
+| --- | --- |
+
+| Cálculo lambda | Fundamento matemático de la programación funcional |
+| --- | --- |
+
+## Orientado a objetos
+
+Hay un conjunto de ***objetos*** que ***interactúan*** mandándose ***mensajes***.
+
+- **Objeto**: es una entidad que posee estado interno y comportamineto. Es un dato abstracto.
+- **Mensaje**: es una petición de un objeto a otro para que éste se comporte de cierta manera, ejecutando uno de sus métodos. Todo el procesamiento en este modelo se activa por mensajes entre objetos.
+- **Método**: es un programa que está asociado a un objeto determinado y cuya ejecución sólo puede desencadenarse a través de un mensaje recibido por éste o por sus descendientes.
+- **Clase**: es un tipo definido por el usuario que determina las estructuras de datos y las **operaciones asociadas** con ese tipo. Cada objeto pertenece a una clase y ***hereda*** funcionalidades de ella. Se abstraen los datos, por medio del **ocultamiento**.
+
+Cada vez que se construye un objeto, se está creando una ***instancia*** de esa clase. Una instancia es un objeto individualizado por los valores que toman sus atributos.
+
+- **Herencia**: Se agrupan clases en jerarquías de clases, de forma tal que una subclase herede todas las propiedades de su superclase, en caso de que tenga una.
+- **Polimorfismo**: los objetos de distintas clases pueden responder a mensajes con el mismo nombre. De esto se desprende el ***binding dinámico***, el cual es la **vinculación** en el proceso de ejecución de los objetos con los **mensajes**.
+
+Los dos grandes lenguajes orientados a objetos son C++ y Java.
+
+## Basado en scripts
+
+Los lenguajes de programación convencionales normlamente construyen aplicaciones **autocontenidas**, con implementaciones propias basadas en el hardware. Sin embargo, actualmente se requiere la **coordinación de múltiples programas**, por lo que sería necesario *combinar* los programas de alguna forma.
+
+Los lenguajes de *scripting* eran un conjunto de **comandos** que eran interpretados como llamadas al sistema como **manejo de archivos**. Se fueron agregando variables, flujo de control, entre otras características de lenguajes de programación y terminaron convirtiéndose en un lenguaje de programación propiamente dicho.
+
+Algunos ejemplos de lenguajes basados en scripts son Perl, Python, PHP, JavaScript, etc.
+
+Los lenguajes script **asumen la existencia de *componentes* útiles en otros lenguajes**. Su intención no es escribir aplicaciones desde el comienzo, sino por ***combinación* de componentes**.
+
+Por lo tanto, los objetivos de los lenguajes basados en scripts son:
+
+- **Uso de scripts** para la combinación de los programas: promueven el uso como lenguaje de extensión, ya que permiten al usuario adaptar o extender funcionalidades de scripts.
+- **Desarrollo** y **evolución rápida**: algunos scripts se escriben y ejecutan una única vez como una secuencia de comandos, y en otros casos se utilizan más frecuentemente, por lo que deben ser adaptados a nuevos requerimientos. Son **fáciles de escribir** y tienen una **sintaxis concisa**.
+- Uso de **editores livianos**: pueden ser escritos en procesadores de texto.
+- Normalmente **interpretados**: la eficiencia no es un requisito esencial para los scripts, pero debe ser considerado al combinar.
+- **Alto nivel de funcionalidad** en aplicaciones de áreas *específicas*
+
+Normalmente, los lenguajes basados en scripts soportan un **tipado *dinámico***, ya que puede necesitarse intercambiar datos de distinto tipo entre distitnos subsistemas y éstos pueden ser **incompatibles**, por lo que debe ofrecerse una flexibilidad. También es debido a que las declaraciones son bastante poco frecuentes.
+
+Los lenguajes basados en scripts suelen tener un buen soporte para conjuntos, diccionarios, listas, tuplas, etc.
+
+Suelen ser aplicados en la *shell*, procesamiento de texto, matemática y estadística, así como también en la WWW.
+
+### JavaScript
+
+El intérprete puede ser embebido en cualquier aplicación, pero por lo general se usa en navegadores web.
+
+Es dinámicamente tipado, con sintaxis similar a Java. Los strings y arreglos tienen longitud dinámica y sus índices no son chequeados.
+
+Soporta OO pero no herencia (herencia por prototipos).
+
+### Python
+
+Es interpretado, multiplataforma, multiparadigma, fuertemente tipado, dinámicamente tipado, y sus variables no se declaran. Nacen cuando se les asigna un valor. (variables dinámicas)
